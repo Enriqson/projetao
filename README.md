@@ -10,5 +10,10 @@ React-native+Expo
 ```
 cd frontend
 npm install
-npm expo
+npx expo
 ```
+
+### Para adicionar SVGs:
+
+Converter SVG usando: https://react-svgr.com/playground/?native=true
+Adicionar à `components/svgs`
