@@ -8,9 +8,9 @@ React-native+Expo
 
 ### Uso local
 ```
-cd frontend
+cd mini-atletas
 npm install
-npx expo
+npm start
 ```
 
 ### Para adicionar SVGs:
