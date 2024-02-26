@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { Dimensions, Linking } from "react-native";
@@ -22,51 +23,51 @@ function Footer() {
   return (
     <View style={{
       position: 'absolute',
-      bottom: bottom + 10, // move the bar a bit up from the bottom
+      bottom: bottom + 10,
       width: Dimensions.get('window').width,
       flexDirection: 'row',
-      justifyContent: 'center', // center the inner view
+      justifyContent: 'center',
     }}>
       <View style={{
+        backgroundColor: '#2859C5',
+        borderRadius: 100,
+        width: Dimensions.get('window').width * 0.8, // Same width as the white view
+        height: 70, // Same height as the white view (adjust as needed)
+        position: 'absolute',
+        zIndex: 1,
+        marginTop: 10,
+      }} />
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: '#fff',
+        padding: 10,
+        borderRadius: 100,
+        width: Dimensions.get('window').width * 0.8, // 80% of screen width
+        height: 70, // Adjust as needed
+        zIndex: 2,
+        borderColor: '#2859C5', // Blue border
+        borderWidth: 2, // Border width
       }}>
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: '#fff',
-          padding: 10,
-          borderRadius: 10, // add some border radius
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-          width: Dimensions.get('window').width * 0.8, // 80% of screen width
-        }}>
-          <TouchableOpacity onPress={() => Linking.openURL('/')}>
-            <Svg height="50" width="50">
-              <Circle cx="25" cy="25" r="25" fill="pink" />
-            </Svg>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL('/')}>
-            <Svg height="50" width="50">
-              <Circle cx="25" cy="25" r="25" fill="blue" />
-            </Svg>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL('/')}>
-            <Svg height="50" width="50">
-              <Circle cx="25" cy="25" r="25" fill="green" />
-            </Svg>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => Linking.openURL('/')}>
+          <Svg height="50" width="50">
+            <Circle cx="25" cy="25" r="25" fill="pink" />
+          </Svg>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('/')}>
+          <Svg height="50" width="50">
+            <Circle cx="25" cy="25" r="25" fill="blue" />
+          </Svg>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('/')}>
+          <Svg height="50" width="50">
+            <Circle cx="25" cy="25" r="25" fill="green" />
+          </Svg>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
-
-
 
 function Content() {
   return (
