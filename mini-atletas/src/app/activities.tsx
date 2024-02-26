@@ -1,9 +1,8 @@
-import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React, { useState } from "react";
-import { Dimensions, Linking } from "react-native";
+import { Dimensions, Linking, SafeAreaView } from "react-native";
 import { Text, View, Modal, ScrollView, TouchableOpacity, Image } from "react-native";
-
+import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Svg, Path, Circle } from "react-native-svg";
 
@@ -69,56 +68,67 @@ function Footer() {
   );
 }
 
+const CustomBlock = ({ title, children }) => (
+  <View style={styles.blockContainer}>
+    <View
+      style={{
+        width: 349,
+        height: 393,
+        borderRadius: 27,
+        backgroundColor: '#8FBFFA',
+        borderWidth: 1,
+        borderColor: '#2859C5',
+        marginBottom: 20, // Adiciona espaço entre os blocos
+      }}
+    />
+    <View
+      style={{
+        width: 343,
+        height: 393,
+        borderRadius: 27,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#000000',
+        position: 'absolute',
+        left: 20,
+        top: 20,
+      }}
+    >
+      <Text>{title}</Text>
+      {children}
+    </View>
+  </View>
+);
+
 function Content() {
   return (
-    <ScrollView style={{ backgroundColor: 'white' }} className="flex-1">
-      <View className="py-12 md:py-24 lg:py-32 xl:py-48">
-        <View className="container px-4 md:px-6">
-          <View className="flex flex-col items-center gap-4 text-center">
-            <Link href="/">
-              <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'blue',
-                  borderRadius: 10,
-                  padding: 10,
-                  margin: 10,
-                  backgroundColor: 'lightgray',
-                  shadowColor: "blue",
-                  shadowOffset: {
-                    width: 2,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 3.84,
-                  elevation: 5,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Svg height="50" width="50">
-                    <Circle cx="25" cy="25" r="25" fill="pink" />
-                  </Svg>
-                  <View style={{ marginLeft: 10 }}>
-                    <Text
-                      style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}
-                    >
-                      Title
-                    </Text>
-                    <Text>
-                      Some description text...
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </Link>
-
-            {/* Add more content blocks as needed */}
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <CustomBlock title="Block 1">
+          <Text>Conteúdo do bloco 1</Text>
+        </CustomBlock>
+        <CustomBlock title="Block 2">
+          <Text>Conteúdo do bloco 2</Text>
+        </CustomBlock>
+        <CustomBlock title="Block 3">
+          <Text>Conteúdo do bloco 3</Text>
+        </CustomBlock>
+        {/* Adicione mais blocos aqui */}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  blockContainer: {
+    marginBottom: 20, // Adiciona espaço entre os blocos
+  },
+});
 
 function Header() {
   const { top } = useSafeAreaInsets();
