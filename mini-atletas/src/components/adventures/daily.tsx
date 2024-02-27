@@ -9,13 +9,13 @@ const Atividades = ({ atividades, day, color }: {atividades: string[], day: stri
 
   return (
     <div className="flex justify-center w-5/6 h-full">
-      <div className='relative justify-end h-[25%] w-full bg bg-blue-200 mt-32 border-solid border-2 border-blue-600 rounded-xl z-0 mr-2'>
+      <div className='absolute justify-end h-[23.5%] w-5/6 bg bg-blue-200 mt-8 border-solid border-2 border-blue-600 rounded-xl z-0 mr-2'>
       </div>
-      <div className='absolute h-[25%] flex justify-end mt-28 w-5/6  '>
-        <Card className='absolute flex flex-col w-[98%] h-[95%] bg bg-white border-solid border-2 rounded-xl border-black z-1'>
+      <div className='absolute h-[25%] flex justify-end mt-4 w-5/6  '>
+        <Card className=' flex flex-col w-[98%] h-[95%] bg bg-white border-solid border-2 rounded-xl border-black z-1'>
             <CardHeader><CardTitle className='text-center'>Dia {day}</CardTitle></CardHeader>
             <div className='w-full flex justify-center'><p>PUT BAR</p></div>
-            <div className='flex flex-col  h-full w-full justify-end p-2'>
+            <div className='flex flex-col  h-[51%] w-full justify-end p-2 mt-4 bg '>
               {atividades.map((atividade, index) => (
                 <div key={index} className="flex justify-between items-center">
                   <p>{atividade}</p>

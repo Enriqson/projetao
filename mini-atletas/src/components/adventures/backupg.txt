@@ -38,3 +38,4 @@ const Atividades = ({ atividades, day, color }: {atividades: string[], day: stri
 
 export default Atividades
 
+<Atividades atividades={["Xadrez", "Pedalar", "Pular corda"]} day={'2'} color={"bg-yellow-200"}/>
