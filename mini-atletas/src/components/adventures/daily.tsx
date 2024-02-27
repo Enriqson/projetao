@@ -3,7 +3,10 @@ import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-
+import Ball from './ui/ball'
+import Dinheiro from './ui/payment'
+import Trofeu from './ui/trofeu'
+import AlarmClock from './ui/alarmClock'
 
 const Atividades = ({ atividades, day, color }: {atividades: string[], day: string, color:string}) => {
 
@@ -23,19 +26,22 @@ const Atividades = ({ atividades, day, color }: {atividades: string[], day: stri
                     <AlertDialogTrigger asChild>
                       <Button variant="outline"  className='rounded-xl h-1/2'>Iniciar</Button>
                     </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently delete your
-                          account and remove your data from our servers.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                      </AlertDialogFooter>
+                    <AlertDialogContent className='bg-white'>
+                      <div className="flex flex-col items-center justify-center">
+                        <AlertDialogTitle>{atividade}</AlertDialogTitle>
+                        <Ball></Ball>
+                      </div>
+
+                        <div className='flex items-center justify-center'>
+                          <div className="p-3"><Trofeu></Trofeu></div>
+                          <div className="p-3"><Dinheiro></Dinheiro></div>
+                          <div className="p-3"><AlarmClock></AlarmClock></div>
+                        </div>
+                        <div className='flex items-center justify-center'><Button variant="outline" className='rounded-xl h-5/4 w-1/2'>Iniciar</Button></div>
+                        <div className='flex items-center justify-center'><AlertDialogCancel className='w-1/2'>Cancel</AlertDialogCancel></div>
+
                     </AlertDialogContent>
+                      
                   </AlertDialog>
                 </div>
               ))}
