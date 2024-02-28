@@ -6,51 +6,51 @@ import { Progress } from "@/components/ui/progress"
 import Ball from './ui/ball'
 import Dinheiro from './ui/payment'
 import Trofeu from './ui/trofeu'
+import Boy from './ui/boy'
 import AlarmClock from './ui/alarmClock'
+import { View, Text  } from 'react-native';
 
 const Atividades = ({ atividades, day, color }: {atividades: string[], day: string, color:string}) => {
 
   return (
-    <div className="flex justify-center w-5/6 h-full">
-      <div className='absolute justify-end h-[23.5%] w-5/6 bg bg-blue-200 mt-8 border-solid border-2 border-blue-600 rounded-xl z-0 mr-2'>
-      </div>
-      <div className='absolute h-[25%] flex justify-end mt-4 w-5/6  '>
-        <Card className=' flex flex-col w-[98%] h-[95%] bg bg-white border-solid border-2 rounded-xl border-black z-1'>
-            <CardHeader><CardTitle className='text-center'>Dia {day}</CardTitle></CardHeader>
-            <div className='w-full flex justify-center'><p>PUT BAR</p></div>
-            <div className='flex flex-col  h-[51%] w-full justify-end p-2 mt-4 bg '>
+    <View className="flex justify-center w-5/6 h-full">
+
+          <View className="flex justify-center flex-row"><Boy></Boy></View>
+            <View className='flex flex-col h-[51%] w-full justify-end p-2 mt-4'>
+              
+              <View className='bg bg-black'></View>
               {atividades.map((atividade, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <p>{atividade}</p>
+                <View key={index} className="flex flex-row justify-between items-center">
+                  <View className=''> 
+                    <Text className=''>{atividade}</Text>
+                  </View>
+                 
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
+                      
                       <Button variant="outline"  className='rounded-xl h-1/2'>Iniciar</Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent className='bg-white'>
-                      <div className="flex flex-col items-center justify-center">
+                      <View className="flex flex-col items-center justify-center">
                         <AlertDialogTitle>{atividade}</AlertDialogTitle>
                         <Ball></Ball>
-                      </div>
+                      </View>
 
-                        <div className='flex items-center justify-center'>
-                          <div className="p-3"><Trofeu></Trofeu></div>
-                          <div className="p-3"><Dinheiro></Dinheiro></div>
-                          <div className="p-3"><AlarmClock></AlarmClock></div>
-                        </div>
-                        <div className='flex items-center justify-center'><Button variant="outline" className='rounded-xl h-5/4 w-1/2'>Iniciar</Button></div>
-                        <div className='flex items-center justify-center'><AlertDialogCancel className='w-1/2'>Cancel</AlertDialogCancel></div>
+                        <View className='flex flex-row items-center justify-center'>
+                          <View className="p-3"><Trofeu></Trofeu></View>
+                          <View className="p-3"><Dinheiro></Dinheiro></View>
+                          <View className="p-3"><AlarmClock></AlarmClock></View>
+                        </View>
+                        <View className='flex items-center justify-center'><Button variant="outline" className='rounded-xl h-5/4 w-1/2'>Iniciar</Button></View>
+                        <View className='flex items-center justify-center'><AlertDialogCancel className='w-1/2'>Cancel</AlertDialogCancel></View>
 
                     </AlertDialogContent>
                       
                   </AlertDialog>
-                </div>
+                </View>
               ))}
-            </div>
-          </Card>
-      </div>
-          
-    </div>
-      
+          </View>   
+    </View>
   );
 };
 
