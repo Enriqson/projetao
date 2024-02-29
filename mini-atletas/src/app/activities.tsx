@@ -5,7 +5,8 @@ import { Text, View, Modal, ScrollView, TouchableOpacity, Image } from "react-na
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Svg, Path, Circle } from "react-native-svg";
-
+import Corda from '@/components/svgs/Atividades/corda'
+import Futebol from '@/components/svgs/Atividades/Bola'
 export default function Page() {
   return (
     <View className="flex flex-1">
@@ -180,8 +181,11 @@ function Content() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Link href="/activitiesComponents/futebol" style={{ margin: 20 }} >
+        <Link href="/activitiesComponents/futebol" style={{ margin: 5 }} >
           <CustomBlock width={347} height={140} direction="row">
+            <View>
+              <Futebol></Futebol>
+            </View>
             <View style={{ flexDirection: 'column' }}>
               <Text style={{
                 fontFamily: 'Kanit',
@@ -215,8 +219,81 @@ function Content() {
             </View>
           </CustomBlock>
         </Link>
-        <Link href="/" style={{ margin: 20 }} >
-          <CustomBlock width={347} height={140} direction="row">
+        <Link href="/" style={{ margin: 5 }} >
+          <CustomBlock width={347} height={140} direction="row" corborda='#F203C8' corBackground="#FFB7F2">
+            <View>
+              <Corda></Corda>
+            </View>
+            <View style={{ flexDirection: 'column' }}>
+              <Text style={{
+                fontFamily: 'Kanit',
+                fontSize: 48,
+                fontWeight: "bold",
+                lineHeight: 48,
+                letterSpacing: -0.02,
+                textAlign: 'left',
+                color: '#F203C8',
+              }}>Pular Corda</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "space-around" }}>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#F203C8',
+                }}>Meta semanal</Text>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#F203C8',
+                }}>Conquistas</Text>
+              </View>
+            </View>
+          </CustomBlock>
+        </Link>
+        <Link href="/" style={{ margin: 5 }} >
+          <CustomBlock width={347} height={140} direction="row" corborda='#F203C8' corBackground="#FFB7F2">
+            <View style={{ flexDirection: 'column' }}>
+              <Text style={{
+                fontFamily: 'Kanit',
+                fontSize: 48,
+                fontWeight: "bold",
+                lineHeight: 48,
+                letterSpacing: -0.02,
+                textAlign: 'left',
+                color: '#2859C5',
+              }}>Futebol</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#2859C5',
+                }}>1 atividade</Text>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#8FBFFA',
+                }}> | 1 semana</Text>
+              </View>
+            </View>
+          </CustomBlock>
+        </Link>
+        <Link href="/" style={{ margin: 5 }} >
+          <CustomBlock width={347} height={140} direction="row" corborda='#F203C8' corBackground="#FFB7F2">
             <View style={{ flexDirection: 'column' }}>
               <Text style={{
                 fontFamily: 'Kanit',
