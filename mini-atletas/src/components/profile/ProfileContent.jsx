@@ -12,8 +12,16 @@ const ProfileContent = ({ userName }) => {
   
     return (
       <div style={{ display: 'flex', flexDirection : 'column' ,justifyContent: 'center', alignItems: 'center'}}>
-        <Girl2></Girl2>
-        <Conquista  ></Conquista>
+        <View >
+          <View>
+            <Girl2></Girl2>
+          </View>
+          <View style={{marginTop: '10px'}}>
+           <Conquista  ></Conquista>
+          </View>
+          
+        </View>
+        
         
       </div>
     );
