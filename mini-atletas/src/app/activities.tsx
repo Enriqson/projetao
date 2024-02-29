@@ -180,7 +180,7 @@ function Content() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Link href="/" style={{ margin: 20 }} >
+        <Link href="/activitiesComponents/futebol" style={{ margin: 20 }} >
           <CustomBlock width={347} height={140} direction="row">
             <View style={{ flexDirection: 'column' }}>
               <Text style={{
@@ -255,16 +255,12 @@ function Content() {
   );
 }
 
-
 function Header() {
   const { top } = useSafeAreaInsets();
   return (
     <View style={{ paddingTop: top }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, height: 56 }}>
         <Link href="/">
-          <Svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <Path d="M11.8355 2.48047L3.41008 10.0311L10.988 17.9573" stroke="#2859C5" stroke-width="4" stroke-linecap="round" />
-          </Svg>
         </Link>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2859C5' }}>
           Minhas Atividades
