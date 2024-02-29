@@ -109,7 +109,7 @@ function ContentWithStartButton({ title, children }) {
     <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
       <CustomBlock>
       </CustomBlock>
-      <StartButton onPress={() => console.log()} />
+      <StartButton onPress={() => console.log("Pressionado")} />
       <View style={{
         borderRadius: 100,
         width: 251, // Mesma largura do botão iniciar
