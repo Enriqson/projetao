@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import React, { useState } from "react";
-import { Dimensions, Linking, SafeAreaView } from "react-native";
+import { Dimensions, Linking, SafeAreaView, useWindowDimensions } from "react-native";
 import { Text, View, Modal, ScrollView, TouchableOpacity, Image } from "react-native";
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,6 +14,15 @@ export default function Page() {
       <Footer />
     </View>
   );
+}
+
+interface CustomBlockProps {
+  direction?: 'row' | 'column';
+  width?: number;
+  height?: number;
+  children?: React.ReactNode;
+  corborda?: string;
+  corBackground?: string;
 }
 
 function Footer() {
@@ -68,39 +77,7 @@ function Footer() {
   );
 }
 
-const CustomBlock = ({ title, children }) => (
-  <View style={styles.blockContainer}>
-    <View
-      style={{
-        width: 347,
-        height: 504,
-        borderRadius: 27,
-        backgroundColor: '#8FBFFA',
-        borderWidth: 1,
-        borderColor: '#2859C5',
-        marginBottom: 55, // Adiciona espaço entre os blocos
-        position: 'relative',
-        top: 35,
-        left: -10,
-      }}
-    />
-    <View
-      style={{
-        width: 347,
-        height: 504,
-        borderRadius: 27,
-        backgroundColor: '#FFFFFF',
-        borderWidth: 1,
-        borderColor: '#000000',
-        position: 'absolute',
-        top: 20,
-      }}
-    >
-      <Text>{title}</Text>
-      {children}
-    </View>
-  </View>
-);
+
 
 function StartButton({ onPress }) {
   return (
@@ -130,10 +107,9 @@ function StartButton({ onPress }) {
 function ContentWithStartButton({ title, children }) {
   return (
     <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-      <CustomBlock title={title}>
-        {children}
+      <CustomBlock>
       </CustomBlock>
-      <StartButton onPress={() => console.log(`Iniciar ${title}`)} />
+      <StartButton onPress={() => console.log()} />
       <View style={{
         borderRadius: 100,
         width: 251, // Mesma largura do botão iniciar
@@ -150,27 +126,135 @@ function ContentWithStartButton({ title, children }) {
   );
 }
 
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    padding: 1,
+  },
+  blockContainer: {
+    marginBottom: 30, // Reduzido de 20 para 10
+    marginTop: 30, // Adicionado marginTop
+    alignItems: 'center',
+  },
+});
+
+const CustomBlock: React.FC<CustomBlockProps> = ({ width = 347, height = 504, children, direction = 'column', corBackground = '#8FBFFA', corborda = '#2859C5' }) => (
+  <View style={styles.blockContainer}>
+    <View
+      style={{
+        width: width,
+        height: height,
+        borderRadius: 27,
+        backgroundColor: corBackground,
+        borderWidth: 1,
+        borderColor: corborda,
+        position: 'relative',
+        top: 35,
+        left: -10,
+      }}
+    >
+    </View>
+    <View
+      style={{
+        width: width,
+        height: height,
+        borderRadius: 27,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#000000',
+        position: 'absolute',
+        top: 20,
+        flexDirection: direction,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      }}
+    >
+      {children}
+    </View>
+  </View>
+);
+
 
 function Content() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-        <ContentWithStartButton title="Block 1">
-          <Text>Conteúdo do bloco 1</Text>
-        </ContentWithStartButton>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Link href="/" style={{ margin: 20 }} >
+          <CustomBlock width={347} height={140} direction="row">
+            <View style={{ flexDirection: 'column' }}>
+              <Text style={{
+                fontFamily: 'Kanit',
+                fontSize: 48,
+                fontWeight: "bold",
+                lineHeight: 48,
+                letterSpacing: -0.02,
+                textAlign: 'left',
+                color: '#2859C5',
+              }}>Futebol</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#2859C5',
+                }}>1 atividade</Text>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#8FBFFA',
+                }}> | 1 semana</Text>
+              </View>
+            </View>
+          </CustomBlock>
+        </Link>
+        <Link href="/" style={{ margin: 20 }} >
+          <CustomBlock width={347} height={140} direction="row">
+            <View style={{ flexDirection: 'column' }}>
+              <Text style={{
+                fontFamily: 'Kanit',
+                fontSize: 48,
+                fontWeight: "bold",
+                lineHeight: 48,
+                letterSpacing: -0.02,
+                textAlign: 'left',
+                color: '#2859C5',
+              }}>Futebol</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#2859C5',
+                }}>1 atividade</Text>
+                <Text style={{
+                  fontFamily: 'Kanit',
+                  fontSize: 24,
+                  fontWeight: "normal",
+                  lineHeight: 24,
+                  letterSpacing: -0.02,
+                  textAlign: 'left',
+                  color: '#8FBFFA',
+                }}> | 1 semana</Text>
+              </View>
+            </View>
+          </CustomBlock>
+        </Link>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    padding: 10,
-  },
-  blockContainer: {
-    marginBottom: 20, // Adiciona espaço entre os blocos
-  },
-});
 
 function Header() {
   const { top } = useSafeAreaInsets();
@@ -178,17 +262,14 @@ function Header() {
     <View style={{ paddingTop: top }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, height: 56 }}>
         <Link href="/">
-          <Svg width="30" height="30" viewBox="0 0 30 30">
-            <Path d="M10 5L5 15H20L15 25L10 15H15L20 5H10Z" fill="black" />
+          <Svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M11.8355 2.48047L3.41008 10.0311L10.988 17.9573" stroke="#2859C5" stroke-width="4" stroke-linecap="round" />
           </Svg>
         </Link>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2859C5' }}>
           Minhas Atividades
         </Text>
         <Link href="/">
-          <Svg width="30" height="30" viewBox="0 0 30 30">
-            <Path d="M20 5L25 15H10L15 25L20 15H15L10 5H20Z" fill="black" />
-          </Svg>
         </Link>
       </View>
     </View>
