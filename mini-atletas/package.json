@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/kumbh-sans": "^0.2.3",
+    "@zamplyy/react-native-nice-avatar": "^1.1.2",
     "expo": "^50.0.1",
     "expo-app-loading": "^2.1.1",
     "expo-constants": "~15.4.2",
@@ -26,6 +27,7 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-svg": "14.1.0",
+    "react-native-vector-icons": "^10.0.3",
     "react-native-web": "~0.19.6",
     "tailwindcss": "^3.4.0"
   },
