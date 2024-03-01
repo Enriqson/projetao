@@ -2,15 +2,21 @@ import { Link } from "expo-router";
 import { StyleSheet } from "nativewind";
 import { useState } from "react";
 import { View, Text, Dimensions, TouchableOpacity, Linking, Button } from "react-native";
+import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 import { blue } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Circle, Svg } from "react-native-svg";
+import Pessoa from '@/components/svgs/Atividades/Pessoa'
+import Taça from '@/components/svgs/Atividades/Taça'
+import Casa from "@/components/svgs/Atividades/Casa";
+import Voltar from "@/components/svgs/Atividades/Voltar";
+import Configuracao from "@/components/svgs/Atividades/Configuracao";
 //import Header from '../activities'
 
 export default function Page() {
   return (
     <View className="flex flex-1">
-      <Text>FUTEBOL</Text>
+
       <Header />
       <ContentWithStartButton />
       <Footer />
@@ -81,48 +87,48 @@ function ContentWithStartButton() {
     <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
       <View>
         <View style={styles.blockContainer}>
-        <View
-          style={{
-            width: 347,
-            height: 504,
-            borderRadius: 27,
-            backgroundColor: '#8FBFFA',
-            borderWidth: 1,
-            borderColor: '#2859C5',
-            marginBottom: 55, // Adiciona espaço entre os blocos
-            position: 'relative',
-            top: 15,
-            left: -10,
-          }}
-        />
-        <View
-          style={{
-            width: 347,
-            height: 504,
-            borderRadius: 27,
-            backgroundColor: '#FFFFFF',
-            borderWidth: 1,
-            borderColor: '#000000',
-            position: 'absolute',
-          }}
-        >
+          <View
+            style={{
+              width: 347,
+              height: 504,
+              borderRadius: 27,
+              backgroundColor: '#8FBFFA',
+              borderWidth: 1,
+              borderColor: '#2859C5',
+              marginBottom: 55, // Adiciona espaço entre os blocos
+              position: 'relative',
+              top: 15,
+              left: -10,
+            }}
+          />
+          <View
+            style={{
+              width: 347,
+              height: 504,
+              borderRadius: 27,
+              backgroundColor: '#FFFFFF',
+              borderWidth: 1,
+              borderColor: '#000000',
+              position: 'absolute',
+            }}
+          >
           </View>
+        </View>
+
       </View>
-                
-      </View>
-        <StartButton onPress={() => console.log("Pressionado")} />
-        <View style={{
-          borderRadius: 100,
-          width: 251, // Mesma largura do botão iniciar
-          height: 50, // Mesma altura do botão iniciar
-          position: 'absolute',
-          top: 578,
-          zIndex: 1,
-          marginTop: 10,
-          transform: [{ rotate: '-1.57deg' }],
-          borderColor: '#8FBFFA', // Cor da borda (vermelho)
-          borderWidth: 2, // Largura da borda
-        }} />
+      <StartButton onPress={() => console.log("Pressionado")} />
+      <View style={{
+        borderRadius: 100,
+        width: 251, // Mesma largura do botão iniciar
+        height: 50, // Mesma altura do botão iniciar
+        position: 'absolute',
+        top: 578,
+        zIndex: 1,
+        marginTop: 10,
+        transform: [{ rotate: '-1.57deg' }],
+        borderColor: '#8FBFFA', // Cor da borda (vermelho)
+        borderWidth: 2, // Largura da borda
+      }} />
     </View>
   );
 }
@@ -133,11 +139,13 @@ function Header() {
     <View style={{ paddingTop: top }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, height: 56 }}>
         <Link href="/">
+          <Voltar></Voltar>
         </Link>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2859C5' }}>
           Minhas Atividades
         </Text>
         <Link href="/">
+          <Configuracao></Configuracao>
         </Link>
       </View>
     </View>
@@ -177,19 +185,13 @@ function Footer() {
         borderWidth: 2, // Border width
       }}>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="pink" />
-          </Svg>
+          <Taça></Taça>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="blue" />
-          </Svg>
+          <Casa></Casa>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="green" />
-          </Svg>
+          <Pessoa></Pessoa>
         </TouchableOpacity>
       </View>
     </View>

@@ -7,6 +7,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Svg, Path, Circle } from "react-native-svg";
 import Corda from '@/components/svgs/Atividades/corda'
 import Futebol from '@/components/svgs/Atividades/Bola'
+import Bicicleta from '@/components/svgs/Atividades/Bicicleta'
+import Configuracao from '@/components/svgs/Atividades/Configuracao'
+import Voltar from '@/components/svgs/Atividades/Voltar'
+import Taça from '@/components/svgs/Atividades/Taça'
+import Casa from '@/components/svgs/Atividades/Casa'
+import Pessoa from '@/components/svgs/Atividades/Pessoa'
+
 export default function Page() {
   return (
     <View className="flex flex-1">
@@ -59,19 +66,13 @@ function Footer() {
         borderWidth: 2, // Border width
       }}>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="pink" />
-          </Svg>
+          <Taça></Taça>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="blue" />
-          </Svg>
+          <Casa></Casa>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => Linking.openURL('/')}>
-          <Svg height="50" width="50">
-            <Circle cx="25" cy="25" r="25" fill="green" />
-          </Svg>
+          <Pessoa></Pessoa>
         </TouchableOpacity>
       </View>
     </View>
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
     padding: 1,
   },
   blockContainer: {
-    marginBottom: 30, // Reduzido de 20 para 10
-    marginTop: 30, // Adicionado marginTop
+    marginBottom: 5, // Reduzido de 20 para 10
+    marginTop: 5, // Adicionado marginTop
     alignItems: 'center',
   },
 });
@@ -237,18 +238,18 @@ function Content() {
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: "space-around" }}>
                 <Text style={{
                   fontFamily: 'Kanit',
-                  fontSize: 24,
+                  fontSize: 14,
                   fontWeight: "normal",
-                  lineHeight: 24,
+                  lineHeight: 14,
                   letterSpacing: -0.02,
                   textAlign: 'left',
                   color: '#F203C8',
                 }}>Meta semanal</Text>
                 <Text style={{
                   fontFamily: 'Kanit',
-                  fontSize: 24,
+                  fontSize: 14,
                   fontWeight: "normal",
-                  lineHeight: 24,
+                  lineHeight: 14,
                   letterSpacing: -0.02,
                   textAlign: 'left',
                   color: '#F203C8',
@@ -258,42 +259,10 @@ function Content() {
           </CustomBlock>
         </Link>
         <Link href="/" style={{ margin: 5 }} >
-          <CustomBlock width={347} height={140} direction="row" corborda='#F203C8' corBackground="#FFB7F2">
-            <View style={{ flexDirection: 'column' }}>
-              <Text style={{
-                fontFamily: 'Kanit',
-                fontSize: 48,
-                fontWeight: "bold",
-                lineHeight: 48,
-                letterSpacing: -0.02,
-                textAlign: 'left',
-                color: '#2859C5',
-              }}>Futebol</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={{
-                  fontFamily: 'Kanit',
-                  fontSize: 24,
-                  fontWeight: "normal",
-                  lineHeight: 24,
-                  letterSpacing: -0.02,
-                  textAlign: 'left',
-                  color: '#2859C5',
-                }}>1 atividade</Text>
-                <Text style={{
-                  fontFamily: 'Kanit',
-                  fontSize: 24,
-                  fontWeight: "normal",
-                  lineHeight: 24,
-                  letterSpacing: -0.02,
-                  textAlign: 'left',
-                  color: '#8FBFFA',
-                }}> | 1 semana</Text>
-              </View>
+          <CustomBlock width={347} height={140} direction="row" corborda='#8928C5' corBackground="#DBBCED">
+            <View>
+              <Bicicleta></Bicicleta>
             </View>
-          </CustomBlock>
-        </Link>
-        <Link href="/" style={{ margin: 5 }} >
-          <CustomBlock width={347} height={140} direction="row" corborda='#F203C8' corBackground="#FFB7F2">
             <View style={{ flexDirection: 'column' }}>
               <Text style={{
                 fontFamily: 'Kanit',
@@ -302,27 +271,27 @@ function Content() {
                 lineHeight: 48,
                 letterSpacing: -0.02,
                 textAlign: 'left',
-                color: '#2859C5',
-              }}>Futebol</Text>
+                color: '#8928C5',
+              }}>Pedalar</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={{
                   fontFamily: 'Kanit',
-                  fontSize: 24,
+                  fontSize: 14,
                   fontWeight: "normal",
                   lineHeight: 24,
                   letterSpacing: -0.02,
                   textAlign: 'left',
-                  color: '#2859C5',
-                }}>1 atividade</Text>
+                  color: '#8928C5',
+                }}>Meta semanal </Text>
                 <Text style={{
                   fontFamily: 'Kanit',
-                  fontSize: 24,
+                  fontSize: 14,
                   fontWeight: "normal",
                   lineHeight: 24,
                   letterSpacing: -0.02,
                   textAlign: 'left',
-                  color: '#8FBFFA',
-                }}> | 1 semana</Text>
+                  color: '#8928C5',
+                }}>Conquistas</Text>
               </View>
             </View>
           </CustomBlock>
@@ -338,11 +307,13 @@ function Header() {
     <View style={{ paddingTop: top }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, height: 56 }}>
         <Link href="/">
+          <Voltar></Voltar>
         </Link>
         <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2859C5' }}>
           Minhas Atividades
         </Text>
         <Link href="/">
+          <Configuracao></Configuracao>
         </Link>
       </View>
     </View>
