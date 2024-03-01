@@ -11,7 +11,7 @@ export default function NavBar() {
 
   return (
     <View
-      className="absolute self-center flex-row shrink-2 lg:w-1/4 w-3/4 justify-around py-4 px-8 rounded-[32px] border-2 border-b-[10px] border-dark_blue"
+      className="bg-white absolute self-center flex-row shrink-2 lg:w-1/4 w-3/4 justify-around py-4 px-8 rounded-[32px] border-2 border-b-[10px] border-dark_blue"
       style={{ bottom: bottom + 30 }}
     >
       <Link suppressHighlighting href="/achievements">
