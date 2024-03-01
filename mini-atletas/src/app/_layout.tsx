@@ -2,7 +2,7 @@ import NavBar from "@/components/NavBar";
 import "../global.css";
 import { Stack } from "expo-router";
 import { TAILWIND_THEME } from "../utils/index";
-import { default as ConfigSvg } from "../components/svgs/misc/config";
+import { default as ConfigSvg } from "@/components/svgs/misc/config";
 
 export default function Layout() {
   return (
