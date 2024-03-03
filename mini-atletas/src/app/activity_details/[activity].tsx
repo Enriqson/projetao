@@ -2,13 +2,15 @@ import { StyleSheet } from "nativewind";
 import { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useLocalSearchParams } from 'expo-router';
+import ACTIVITY_METADATA from '@/utils/activityMetadata';
+import { TAILWIND_THEME } from "@/utils/index";
 
 export default function Page() {
   const { activity } = useLocalSearchParams();
   console.log(activity)
   return (
     <View className="flex flex-1">
-      <ContentWithStartButton activity={activity}/>
+      <ContentWithStartButton activity={activity} />
     </View>
   );
 }
@@ -73,7 +75,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function ContentWithStartButton({activity}) {
+function ContentWithStartButton({ activity }) {
+  const activityMetadata = ACTIVITY_METADATA[activity]
+  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]]
+  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]]
+
   return (
     <View
       style={{
@@ -89,9 +95,9 @@ function ContentWithStartButton({activity}) {
               width: 347,
               height: 504,
               borderRadius: 27,
-              backgroundColor: "#8FBFFA",
+              backgroundColor: color_primary,
               borderWidth: 1,
-              borderColor: "#2859C5",
+              borderColor: color_secondary,
               marginBottom: 55, // Adiciona espaço entre os blocos
               position: "relative",
               top: 15,
@@ -122,10 +128,12 @@ function ContentWithStartButton({activity}) {
           zIndex: 1,
           marginTop: 10,
           transform: [{ rotate: "-1.57deg" }],
-          borderColor: "#8FBFFA", // Cor da borda (vermelho)
+          borderColor: color_primary,// Cor da borda (vermelho)
           borderWidth: 2, // Largura da borda
         }}
       />
     </View>
   );
 }
+
+
