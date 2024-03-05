@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Atividades from "../components/adventures/daily"
+import Atividades from "../components/adventures/modal-atividades-diarias"
 import { DiaryActivies } from "@/components/adventures/diaryActivities";
 import BackGround from '../components/adventures/ui/background'
 import { View, Text, Pressable ,TouchableOpacity  } from 'react-native';

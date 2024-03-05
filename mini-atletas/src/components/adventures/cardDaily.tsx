@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import HiddeIcon from './ui/hidde';
 import ChessKinight from './ui/chessKinight'
-import Atividades from './daily';
+import Atividades from './modal-atividades-diarias';
 import SampleIcon from './ui/sample';
 import { Card } from '../ui/card';
 
