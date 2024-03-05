@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from 'react';
-import HiddeIcon from './ui/hidde';
-import ChessKinight from './ui/chessKinight'
+import HiddeIcon from '../svgs/adventureWeek/hidde';
+import ChessKinight from '../svgs/adventureWeek/chessKinight'
 import Atividades from './modal-atividades-diarias';
-import SampleIcon from './ui/sample';
+import SampleIcon from '../svgs/adventureWeek/sample';
 import { Card } from '../ui/card';
-import Ball from './ui/ball'
-import Bar from './ui/bar'
-import Snorkle from './ui/snorkle'
+import Ball from '../svgs/adventureWeek/ball'
+import Bar from '../svgs/adventureWeek/bar'
+import Snorkle from '../svgs/adventureWeek/snorkle'
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from '../ui/button';
 import { View, Text, Pressable ,TouchableOpacity  } from 'react-native';

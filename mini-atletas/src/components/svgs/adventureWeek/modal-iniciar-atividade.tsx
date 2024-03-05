@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '../../ui/card';
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import Ball from './ui/ball'
-import Dinheiro from './ui/payment'
-import ProgressBar from './ui/progressBar'
-import Trofeu from './ui/trofeu'
-import Boy from './ui/boy'
-import AlarmClock from './ui/alarmClock'
+import { Progress } from "@/components/ui/progress";
+import Ball from '../../svgs/adventureWeek/ball';
+import Dinheiro from '../../svgs/adventureWeek/payment';
+import ProgressBar from '../../svgs/adventureWeek/progressBar';
+import Trofeu from '../../svgs/adventureWeek/trofeu';
+import Boy from '../../svgs/adventureWeek/boy';
+import AlarmClock from '../../svgs/adventureWeek/alarmClock';
 import { View, Text, Pressable  } from 'react-native';
-import Feedback from './modal-feedback';
+import Feedback from '../../adventures/modal-feedback';
 
 const AtividadeIniciar = ({ atividade }) => {
 

@@ -3,13 +3,13 @@ import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import Ball from './ui/ball'
-import Dinheiro from './ui/payment'
-import Trofeu from './ui/trofeu'
-import Boy from './ui/boy'
-import AlarmClock from './ui/alarmClock'
+import Ball from '../svgs/adventureWeek/ball'
+import Dinheiro from '../svgs/adventureWeek/payment'
+import Trofeu from '../svgs/adventureWeek/trofeu'
+import Boy from '../svgs/adventureWeek/boy'
+import AlarmClock from '../svgs/adventureWeek/alarmClock'
 import { View, Text  } from 'react-native';
-import AtividadeIniciar from './modal-iniciar-atividade';
+import AtividadeIniciar from '../svgs/adventureWeek/modal-iniciar-atividade';
 
 const Atividades = ({ atividades, day, color }: {atividades: string[], day: string, color:string}) => {
   return (

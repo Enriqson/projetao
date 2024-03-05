@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import HiddeIcon from './ui/hidde';
-import ChessKinight from './ui/chessKinight'
+import HiddeIcon from '../svgs/adventureWeek/hidde';
+import ChessKinight from '../svgs/adventureWeek/chessKinight'
 import Atividades from './modal-atividades-diarias';
-import SampleIcon from './ui/sample';
+import SampleIcon from '../svgs/adventureWeek/sample';
 import { Card } from '../ui/card';
 
 export const CardDaily = () =>{
