@@ -10,9 +10,9 @@ export default function Page() {
   return (
     <View className="flex flex-1">
       <Header />
-      <div className="mt-8">
+      <View className="mt-8">
         <ProfileContent userName="Leticia"></ProfileContent>
-      </div>
+      </View>
 
 
     </View>

@@ -20,14 +20,14 @@ const ProfileContent = ({ userName }) => {
     const borderColor = "#8928C5"; // Defina a cor da borda aqui
   
     return (
-      <div className="flex flex-col justify-center items-center">
+      <View className="flex flex-col justify-center items-center">
         <View > 
           <View>
             <Girl2></Girl2>
           </View>
 
-          <View style={{marginBottom: '10px'}}>
-            <View style={{marginBottom: '-15px', marginTop: '10px'}}>
+          <View className="mb-[10px]">
+            <View  className="mb-[-15px] mt-[10px]">
               <Text className="text-lg text-gray-500 md:text-xl dark:text-gray-400 mb-2">
                 Minhas conquistas
               </Text>
@@ -109,7 +109,7 @@ const ProfileContent = ({ userName }) => {
 
 
         </View>
-      </div>
+      </View>
     );
   };
   
