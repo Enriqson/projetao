@@ -9,7 +9,7 @@ import Trofeu from '../svgs/adventureWeek/trofeu'
 import Boy from '../svgs/adventureWeek/boy'
 import AlarmClock from '../svgs/adventureWeek/alarmClock'
 import { View, Text  } from 'react-native';
-import AtividadeIniciar from '../svgs/adventureWeek/modal-iniciar-atividade';
+import AtividadeIniciar from './modal-iniciar-atividade';
 
 const Atividades = ({ atividades, day, color }: {atividades: string[], day: string, color:string}) => {
   return (

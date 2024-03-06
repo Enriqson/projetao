@@ -7,6 +7,7 @@ import SampleIcon from '../svgs/adventureWeek/sample';
 import { Card } from '../ui/card';
 import Ball from '../svgs/adventureWeek/ball'
 import Bar from '../svgs/adventureWeek/bar'
+import BarTest from '@/components/svgs/adventureWeek/Bar-test'
 import Snorkle from '../svgs/adventureWeek/snorkle'
 import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
 import { Button } from '../ui/button';
@@ -17,16 +18,26 @@ export const DiaryActivies = () =>{
 
     const handleClickIcon = () => {
         setState(!state);
-        console.log('oi')
     };
 
     return(
         <View className="flex flex-col h-full w-full items-center">
             <AlertDialog>
                     <AlertDialogTrigger asChild>
-                        <Bar></Bar>  
+                    
+                        <View className="flex h-[7%] w-[90%] bg bg-white border-solid border-2 border-black rounded-[4rem] mt-8 z-3 items-center">
+                            <View className='flex flex-row justify-between w-full'>
+                                <View>
+                                    <Text className="ml-8 mt-4">Atividades Diarias</Text>
+                                </View>
+
+                                <View className='flex mt-6 mr-2 mb'>
+                                         <SampleIcon/> 
+                                </View>
+                            </View>
+                        </View>
                     </AlertDialogTrigger>
-                    <AlertDialogContent className='bg-white h-[65%] '>
+                    <AlertDialogContent className='bg-white h-[65%]'>
                         <View className="flex flex-col h-full w-full items-center">
                         <View className="mb-5">
                                 <AlertDialogCancel onClick={handleClickIcon}>Cancel</AlertDialogCancel>
