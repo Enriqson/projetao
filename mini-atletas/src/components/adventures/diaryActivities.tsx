@@ -9,68 +9,28 @@ import Ball from '../svgs/adventureWeek/ball'
 import Bar from '../svgs/adventureWeek/bar'
 import BarTest from '@/components/svgs/adventureWeek/Bar-test'
 import Snorkle from '../svgs/adventureWeek/snorkle'
-import {AlertDialog,AlertDialogAction,AlertDialogCancel,AlertDialogContent,AlertDialogDescription,AlertDialogFooter,AlertDialogHeader,AlertDialogTitle,AlertDialogTrigger,} from "@/components/ui/alert-dialog"
-import { Button } from '../ui/button';
-import { View, Text, Pressable ,TouchableOpacity  } from 'react-native';
+import { View, Text} from 'react-native';
+import { Button } from '@rneui/base';
 
 export const DiaryActivies = () =>{
-    const [state,setState] = useState(false);
-
-    const handleClickIcon = () => {
-        setState(!state);
+    const [stateDiaryActivities,setStateDiaryActivities] = useState(false);
+    const [statesModals, setStateModals] = useState<Boolean[]>(Array.from({length:5}, ()=>false));
+    
+    const handleClickButton = () => {
+        setStateDiaryActivities(!stateDiaryActivities);
     };
 
     return(
         <View className="flex flex-col h-full w-full items-center">
-            <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                    
-                        <View className="flex h-[7%] w-[90%] bg bg-white border-solid border-2 border-black rounded-[4rem] mt-8 z-3 items-center">
-                            <View className='flex flex-row justify-between w-full'>
-                                <View>
-                                    <Text className="ml-8 mt-4">Atividades Diarias</Text>
-                                </View>
-
-                                <View className='flex mt-6 mr-2 mb'>
-                                         <SampleIcon/> 
-                                </View>
-                            </View>
-                        </View>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent className='bg-white h-[65%]'>
-                        <View className="flex flex-col h-full w-full items-center">
-                        <View className="mb-5">
-                                <AlertDialogCancel onClick={handleClickIcon}>Cancel</AlertDialogCancel>
-                            </View>
-                            <View>
-                            <Atividades atividades={["Xadrez", "Pedalar", "Pular corda"]} day={'2'} color={"bg-yellow-200"} />
-                            </View>
-                        </View>
-                    </AlertDialogContent>
+            <View className='absolute justify-end h-[6.5%] w-5/6  bg  mt-8 bg-sky-400 border-solid  border-2 border-blue-600 rounded-3xl z-0 '/>
+            <View className='relative  h-[6.5%] w-5/6  bg  mt-6 bg-white border-solid  border-2 border-blue-600 rounded-3xl z-1'>
+                <View className='flex flex-row items-center h-full justify-between pl-2'>
+                    <Text>Atividades diárias</Text>
+                    <Button type='clear' title='test' onPress={handleClickButton}>
+                        {stateDiaryActivities ? <SampleIcon/> : <HiddeIcon/>}
+                    </Button>
+                </View>
                 
-            </AlertDialog>
-
-            <View>
-                <View className="p-4">
-                    <Card className='flex h-[120%] w-[130%] flex-col items-center bg-white border-solid border-2 border-black rounded-[1rem] transform -rotate-6' onClick={handleClickIcon}>
-                        <Ball></Ball>
-                        <View><Text>Dia 1</Text></View>
-                    </Card>
-                </View>
-
-                <View className="p-4">
-                    <Card className='flex h-[120%] w-[130%] flex-col items-center bg-white border-solid border-2 border-black rounded-[1rem] transform rotate-6'>
-                        <ChessKinight></ChessKinight>
-                        <View><Text>Dia 2</Text></View>
-                    </Card>
-                </View>
-
-                <View className="p-4">
-                    <Card className='flex h-[120%] w-[130%] flex-col items-center bg-white border-solid border-2 border-black rounded-[1rem] transform -rotate-6'>
-                        <Snorkle></Snorkle>
-                        <View><Text>Dia 3</Text></View>
-                    </Card>
-                </View>
             </View>
         </View>
         
