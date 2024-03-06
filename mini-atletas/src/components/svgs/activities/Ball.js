@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-const Futebol = (props) => (
+const Ball = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={84}
@@ -20,4 +20,4 @@ const Futebol = (props) => (
     />
   </Svg>
 )
-export default Futebol 
+export default Ball 

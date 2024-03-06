@@ -1,11 +1,11 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import Corda from "@/components/svgs/Atividades/corda";
-import Futebol from "@/components/svgs/Atividades/Bola";
-import Bicicleta from "@/components/svgs/Atividades/Bicicleta";
+import Rope from "@/components/svgs/activities/Rope";
+import Ball from "@/components/svgs/activities/Ball";
+import Bike from "@/components/svgs/activities/Bike";
+import Chess from "@/components/svgs/activities/Chess";
+import Hide from "@/components/svgs/activities/Hide";
 import ActivityBlock from "@/components/ActivityBlock";
-import Xadrez from "@/components/svgs/Atividades/Xadrez";
-import Esconde from "@/components/svgs/Atividades/Esconde";
 
 export default function Page() {
   return (
@@ -30,23 +30,23 @@ function Content() {
         >
           <ActivityBlock
             activityName="soccer"
-            ActivitySvg={Futebol}
+            ActivitySvg={Ball}
           />
           <ActivityBlock
             activityName="rope_jumping"
-            ActivitySvg={Corda}
+            ActivitySvg={Rope}
           />
           <ActivityBlock
             activityName="cycling"
-            ActivitySvg={Bicicleta}
+            ActivitySvg={Bike}
           />
           <ActivityBlock
             activityName="chess"
-            ActivitySvg={Xadrez}
+            ActivitySvg={Chess}
           />
           <ActivityBlock
             activityName="hide_and_seek"
-            ActivitySvg={Esconde}
+            ActivitySvg={Hide}
           />
         </View>
       </View>

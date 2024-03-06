@@ -4,10 +4,11 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useLocalSearchParams } from 'expo-router';
 import ACTIVITY_METADATA from '@/utils/activityMetadata';
 import { TAILWIND_THEME } from "@/utils/index";
+import OffsetBorder from "@/components/OffsetBorder";
 
 export default function Page() {
   const { activity } = useLocalSearchParams();
-  console.log(activity)
+
   return (
     <View className="flex flex-1">
       <ContentWithStartButton activity={activity} />
@@ -27,51 +28,36 @@ function StartButton({ onPress }) {
   };
 
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={[styles.button, isPressed && styles.buttonPressed]}
+    <View className="relative flex mt-5"
     >
-      <Text style={[styles.buttonText, isPressed && styles.buttonTextPressed]}>
-        Iniciar
-      </Text>
-    </TouchableOpacity>
+      <View style={{
+        transform: [{ rotate: "-1.57deg" }],
+      }}>
+        <View className="rounded-[100px] lg:h-[5vh] lg:w-[22vw] h-[8vh] w-[60vw] absolute top-[10px]  border-light_blue border-2" />
+        <TouchableOpacity
+          onPress={onPress}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          className="flex-row justify-center items-center bg-white p-[10px] lg:h-[5vh] lg:w-[22vw] h-[8vh] w-[60vw] rounded-[100px] border-black border-2 active:bg-light_blue"
+        >
+          <Text
+            style={[styles.buttonText, isPressed && styles.buttonTextPressed]}
+          >
+            Iniciar
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 100,
-    width: 251,
-    height: 50,
-    zIndex: 2,
-    borderColor: "#000000",
-    borderWidth: 2,
-    marginBottom: 120,
-    position: "absolute",
-    top: 578,
-    transform: [{ rotate: "-1.57deg" }],
-  },
-  buttonPressed: {
-    backgroundColor: "blue", // Altera para a cor desejada quando pressionado
-  },
   buttonText: {
     fontSize: 20,
     color: "#545F71",
   },
   buttonTextPressed: {
     color: "#fff", // Altera para a cor do texto desejada quando pressionado
-  },
-  blockContainer: {
-    marginBottom: 30, // Reduzido de 20 para 10
-    marginTop: 30, // Adicionado marginTop
-    alignItems: "center",
   },
 });
 
@@ -81,57 +67,17 @@ function ContentWithStartButton({ activity }) {
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]]
 
   return (
-    <View
-      style={{
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 20,
-      }}
-    >
+    <View className="justify-center items-center">
       <View>
-        <View style={styles.blockContainer}>
-          <View
-            style={{
-              width: 347,
-              height: 504,
-              borderRadius: 27,
-              backgroundColor: color_primary,
-              borderWidth: 1,
-              borderColor: color_secondary,
-              marginBottom: 55, // Adiciona espaço entre os blocos
-              position: "relative",
-              top: 15,
-              left: -10,
-            }}
-          />
-          <View
-            style={{
-              width: 347,
-              height: 504,
-              borderRadius: 27,
-              backgroundColor: "#FFFFFF",
-              borderWidth: 1,
-              borderColor: "#000000",
-              position: "absolute",
-            }}
-          ></View>
+        <View className="my-[20px] items-center">
+          <OffsetBorder color_primary={color_primary} color_secondary={color_secondary}>
+            <View className="border-black border-[2px] rounded-[32px] bg-white lg:h-[50vh] lg:w-[50vw] h-[60vh] w-[80vw]">
+              <Text> Lorem Ipsum</Text>
+            </View>
+          </OffsetBorder>
         </View>
       </View>
-      <StartButton onPress={() => console.log("Pressionado")} />
-      <View
-        style={{
-          borderRadius: 100,
-          width: 251, // Mesma largura do botão iniciar
-          height: 50, // Mesma altura do botão iniciar
-          position: "absolute",
-          top: 578,
-          zIndex: 1,
-          marginTop: 10,
-          transform: [{ rotate: "-1.57deg" }],
-          borderColor: color_primary,// Cor da borda (vermelho)
-          borderWidth: 2, // Largura da borda
-        }}
-      />
+      <StartButton onPress={() => {}} />
     </View>
   );
 }

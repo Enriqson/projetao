@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
-const Corda = (props) => (
+const Rope = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
         width={53}
@@ -22,4 +22,4 @@ const Corda = (props) => (
         />
     </Svg>
 )
-export default Corda
+export default Rope
