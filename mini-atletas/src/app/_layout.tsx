@@ -28,6 +28,10 @@ export default function Layout() {
           name="activities"
           options={{ headerTitle: "Minhas Atividades" }}
         />
+        <Stack.Screen
+          name="activity_details"
+          options={{ headerShown: false }}
+        />
       </Stack>
       <NavBar />
     </>

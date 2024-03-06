@@ -9,9 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/kumbh-sans": "^0.2.3",
     "@zamplyy/react-native-nice-avatar": "^1.1.2",
     "expo": "^50.0.1",
+    "expo-app-loading": "^2.1.1",
     "expo-constants": "~15.4.2",
+    "expo-font": "~11.10.3",
     "expo-linking": "~6.2.1",
     "expo-router": "~3.4.1",
     "expo-splash-screen": "~0.26.1",
