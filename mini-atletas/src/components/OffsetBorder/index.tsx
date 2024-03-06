@@ -12,8 +12,7 @@ const OffsetBorder = ({
   color_secondary = TAILWIND_THEME.colors.blue,
 }) => {
   return (
-    <View className="relative">
-      {children}
+    <View className="relative flex">
       <View
         style={{
           left: -leftOffset,
@@ -23,11 +22,11 @@ const OffsetBorder = ({
           borderRadius: borderRadius,
           position: "absolute",
           borderWidth: 2,
-          zIndex: -1,
           borderColor: color_secondary,
           backgroundColor: color_primary,
         }}
       />
+      {children}
     </View>
   );
 };
