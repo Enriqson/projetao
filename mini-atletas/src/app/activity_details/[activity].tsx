@@ -5,6 +5,7 @@ import { useLocalSearchParams } from 'expo-router';
 import ACTIVITY_METADATA from '@/utils/activityMetadata';
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder";
+import { Svg } from "react-native-svg";
 
 export default function Page() {
   const { activity } = useLocalSearchParams();
@@ -65,19 +66,45 @@ function ContentWithStartButton({ activity }) {
   const activityMetadata = ACTIVITY_METADATA[activity]
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]]
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]]
+  const Image = activityMetadata["Image"]
 
   return (
     <View className="justify-center items-center">
       <View>
         <View className="my-[20px] items-center">
           <OffsetBorder color_primary={color_primary} color_secondary={color_secondary}>
-            <View className="border-black border-[2px] rounded-[32px] bg-white lg:h-[50vh] lg:w-[50vw] h-[60vh] w-[80vw]">
-              <Text> Lorem Ipsum</Text>
+            <View className="border-black border-[2px] rounded-[32px] bg-white lg:h-[50vh] lg:w-[50vw] h-[60vh] w-[80vw] ">
+              <View className="flex mx-[20px] my-[20px] ">
+                <Text style={{
+                  fontFamily: "Kanit",
+                  fontSize: 48,
+                  fontWeight: "bold",
+                  //lineHeight: "28px",
+                  color: color_secondary,
+                }}>{activityMetadata["alias"]}</Text>
+                <View className="my-[10px]">
+                  <Image />
+                </View>
+                <Text className="my-[10px]" style={{
+                  fontFamily: "Kanit",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: color_secondary,
+                }}>Como fazer?</Text>
+                <Text className="my-[10px]">{activityMetadata["instructions"]}</Text>
+                <Text className="my-[10px]" style={{
+                  fontFamily: "Kanit",
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: color_secondary,
+                }}>O que preciso ?</Text>
+                <Text className="my-[10px]">{activityMetadata["requirements"]}</Text>
+              </View>
             </View>
           </OffsetBorder>
         </View>
       </View>
-      <StartButton onPress={() => {}} />
+      <StartButton onPress={() => { }} />
     </View>
   );
 }
