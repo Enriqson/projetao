@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { default as AchievementSvg } from "../svgs/misc/achievement";
-import { default as HomeSvg } from "../svgs/misc/home";
-import { default as ProfileSvg } from "../svgs/misc/profile";
+import { default as AchievementSvg } from "@/components/svgs/misc/achievement";
+import { default as HomeSvg } from "@/components/svgs/misc/home";
+import { default as ProfileSvg } from "@/components/svgs/misc/profile";
 
 export default function NavBar() {
   const { bottom } = useSafeAreaInsets();

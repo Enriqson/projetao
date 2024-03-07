@@ -2,6 +2,7 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
+  prefix: "",
   theme: {
     extend: {
       colors: {
@@ -18,9 +19,9 @@ module.exports = {
         light_pink: "#FFB7F2",
       },
     },
-  },
-  future: {
-    hoverOnlyWhenSupported: true,
+    future: {
+      hoverOnlyWhenSupported: true,
+    },
   },
   plugins: [],
 };
