@@ -3,7 +3,7 @@ import Svg, { Path } from "react-native-svg"
 import { TouchableOpacity } from 'react-native';
 import { Pressable } from "react-native";
 const SetaDireita = (props) => (
-    
+
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={14}
@@ -19,4 +19,6 @@ const SetaDireita = (props) => (
     />
   </Svg>
 )
+
 export default SetaDireita
+

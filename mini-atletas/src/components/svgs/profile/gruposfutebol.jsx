@@ -64,4 +64,5 @@ const GrupoFutebol = (props) => (
     />
   </Svg>
 )
+
 export default GrupoFutebol
