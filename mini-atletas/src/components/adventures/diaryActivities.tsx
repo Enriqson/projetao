@@ -13,6 +13,8 @@ import { View, Text} from 'react-native';
 import { Button } from '@rneui/base';
 import { ModalActivitiesStart } from './modalActivitiesStart';
 import { ModalStart } from './modalStart';
+import { ModalOnGoing } from './modalOnGoing' 
+import { ModalFeedback } from './modalFeedback' 
 
 export const DiaryActivies = () =>{
     const [stateDiaryActivities,setStateDiaryActivities] = useState(false);
@@ -49,13 +51,24 @@ export const DiaryActivies = () =>{
                 </View>
             </View>
 
+
             <View className='h-full w-full'>
-                <ModalActivitiesStart stateModal={statesModals[0]} onClose={()=>showModal(0)} onNext={async ()=>closeModal(0,1)} />
+                <ModalActivitiesStart stateModal={statesModals[0]} onClose={()=>showModal(0)} onNext={async ()=>closeModal(0,1)} atividades={['Futebol', 'Volei', 'Basquete']} />
             </View>
 
             <View className='h-full w-full'>
-                <ModalStart stateModal={statesModals[1]} onClose={()=>showModal(1)} />
+                <ModalStart stateModal={statesModals[1]} onClose={()=>showModal(1)} onNext={async ()=>closeModal(1,2)} atividade='futebol'/>
             </View>
+
+            <View className='h-full w-full'>
+                <ModalOnGoing stateModal={statesModals[2]} onClose={()=>showModal(2)} onNext={async ()=>closeModal(2,3)} atividade='futebol'/>
+            </View>
+
+            <View className='h-full w-full'>
+                <ModalFeedback stateModal={statesModals[3]} onClose={()=>showModal(3)} onNext={async ()=>closeModal(3,4)} atividade='futebol'/>
+            </View>
+
+            
         </View>
     )
 }

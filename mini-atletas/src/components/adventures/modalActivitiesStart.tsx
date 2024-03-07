@@ -1,8 +1,9 @@
 import { Modal,View, Text} from "react-native"
 import React from 'react';
 import { Button } from '@rneui/base';
+import Boy from '../svgs/adventureWeek/boy'
 
-export const ModalActivitiesStart = ( {stateModal, onClose, onNext}: { stateModal: boolean, onClose: () => void, onNext?: () => void }) =>{
+export const ModalActivitiesStart = ( {stateModal, onClose, onNext, atividades}: { stateModal: boolean, onClose: () => void, onNext?: () => void, atividades: string[] }) =>{
     return(
         <Modal animationType="fade" transparent={true} visible={stateModal}>
             <View className="flex justify-top items-center h-full w-full">
@@ -11,10 +12,23 @@ export const ModalActivitiesStart = ( {stateModal, onClose, onNext}: { stateModa
                         <Button size="lg" type="clear" onPress={onClose}></Button>
                     </View>
                 </View>
-                <View className="flex justify-top pt-12 h-[65%] w-[80%] ">
-                    <View className="h-[40%] w-full border border-solid ">
+                <View className="flex justify-top pt-12 h-[90%] w-[80%] ">
+                    <View className="h-[40%] w-full border border-solid bg bg-white rounded-3xl">
                         <Text>MODAL 1</Text>
-                        <Button onPress={onNext}>Modal 2</Button>
+
+                        <View className="flex justify-center flex-row">
+                            <Boy></Boy>
+                         </View>
+                         {atividades.map((atividade, index) => ( 
+
+                            <View key={index} className="flex flex-row justify-between items-center">
+                                    <View className='pl-2'> 
+                                        <Text className=''>{atividade}</Text>
+                                    </View>
+
+                                    <Button onPress={onNext} className='rounded-xl h-1/2 pr-2'>Iniciar</Button>
+                            </View>
+                         ))}
                     </View>
                 </View>
             </View>

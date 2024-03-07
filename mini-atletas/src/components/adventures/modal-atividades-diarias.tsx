@@ -15,7 +15,9 @@ const Atividades = ({ atividades, day, color }: {atividades: string[], day: stri
   return (
     <View className="flex justify-center w-5/6 h-full">
 
-          <View className="flex justify-center flex-row"><Boy></Boy></View>
+            <View className="flex justify-center flex-row">
+              <Boy></Boy>
+            </View>
             <View className='flex flex-col h-[51%] w-full justify-end p-2 mt-4'>
               
               <View className='bg bg-black'></View>
