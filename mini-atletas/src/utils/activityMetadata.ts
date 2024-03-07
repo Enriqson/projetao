@@ -3,7 +3,7 @@ import Ball from "@/components/svgs/activities/Ball";
 import Bike from "@/components/svgs/activities/Bike";
 import Chess from "@/components/svgs/activities/Chess";
 import Hide from "@/components/svgs/activities/Hide";
-
+import * as trophies from "@/components/svgs/activities/Trophy";
 const ACTIVITY_METADATA = {
   soccer: {
     alias: "Futebol",
@@ -13,6 +13,7 @@ const ACTIVITY_METADATA = {
     requirements: "É necessário uma bola para que haja a prática, uniforme ou colete,chuteira, um espaço adequado e se alongar e aquecer antes da prática.",
     weeklyGoal: 1,
     achievements: 1,
+    Trophy: trophies.TrophyB,
   },
   rope_jumping: {
     alias: "Pular Corda",
@@ -22,6 +23,7 @@ const ACTIVITY_METADATA = {
     requirements: "Uma corda para realizar o exercício, coordenação motora eequilíbrio",
     weeklyGoal: 1,
     achievements: 1,
+    Trophy: trophies.TrophyR,
   },
   cycling: {
     alias: "Pedalar",
@@ -31,6 +33,7 @@ const ACTIVITY_METADATA = {
     requirements: "Uma bicicleta para a realização da prática, agilidade, coordenaçãomotora e também equilĩbrio.",
     weeklyGoal: 1,
     achievements: 1,
+    Trophy: trophies.TrophyC,
   },
   chess: {
     alias: "Xadrez",
@@ -40,6 +43,7 @@ const ACTIVITY_METADATA = {
     requirements: "Um espaço para a realização da atividade e mais de uma criança.",
     weeklyGoal: 1,
     achievements: 1,
+    Trophy: trophies.TrophyX
   },
   hide_and_seek: {
     alias: "Pique esconde",
@@ -49,6 +53,7 @@ const ACTIVITY_METADATA = {
     requirements: "Tabuleiro com todas as peças, um local para apoiar o tabuleiro e dois jogadores.",
     weeklyGoal: 1,
     achievements: 1,
+    Trophy: trophies.TrophyH,
   },
 };
 
