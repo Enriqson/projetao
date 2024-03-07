@@ -19,7 +19,7 @@ export default function Page() {
 function Content() {
   return (
     <ScrollView>
-      <View className=" w-4/5 lg:w-2/4 self-center">
+      <View className=" w-4/5 lg:w-2/4 self-center h-[120vh] justify-start">
         <View
           style={{
             flexGrow: 1,
