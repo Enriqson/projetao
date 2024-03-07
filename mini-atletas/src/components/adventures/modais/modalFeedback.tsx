@@ -1,11 +1,11 @@
 import { Modal,View, Text} from "react-native"
 import React from 'react';
 import { Button } from '@rneui/base';
-import TerrifiedFace from '../svgs/adventureWeek/emojeTerrified';
-import SadFace from '../svgs/adventureWeek/emojeSad';
-import StraightFace from '../svgs/adventureWeek/emojeStraight';
-import HappyFace from '../svgs/adventureWeek/emojeHappy';
-import SparksFace from '../svgs/adventureWeek/emojeSparks';
+import TerrifiedFace from '../../svgs/adventureWeek/emojeTerrified';
+import SadFace from '../../svgs/adventureWeek/emojeSad';
+import StraightFace from '../../svgs/adventureWeek/emojeStraight';
+import HappyFace from '../../svgs/adventureWeek/emojeHappy';
+import SparksFace from '../../svgs/adventureWeek/emojeSparks';
 
 export const ModalFeedback = ( {stateModal, onClose, onNext, atividade}: { stateModal: boolean, onClose: () => void, onNext?: () => void, atividade: string}) =>{
     return(

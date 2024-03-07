@@ -1,10 +1,10 @@
 import { Modal,View, Text} from "react-native"
 import React from 'react';
 import { Button } from '@rneui/base';
-import Ball from '../svgs/adventureWeek/ball';
-import Trofeu from '../svgs/adventureWeek/trofeu';
-import Dinheiro from '../svgs/adventureWeek/payment';
-import AlarmClock from '../svgs/adventureWeek/alarmClock';
+import Ball from '../../svgs/adventureWeek/ball';
+import Trofeu from '../../svgs/adventureWeek/trofeu';
+import Dinheiro from '../../svgs/adventureWeek/payment';
+import AlarmClock from '../../svgs/adventureWeek/alarmClock';
 
 export const ModalStart = ( {stateModal, onClose, onNext , atividade}: { stateModal: boolean, onClose: () => void, onNext?: () => void, atividade: string}) =>{
     return(

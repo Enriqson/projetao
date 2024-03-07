@@ -1,20 +1,16 @@
 "use client";
 import React, { useState } from 'react';
 import HiddeIcon from '../svgs/adventureWeek/hidde';
-import ChessKinight from '../svgs/adventureWeek/chessKinight'
-import Atividades from './modal-atividades-diarias';
 import SampleIcon from '../svgs/adventureWeek/sample';
-import { Card } from '../ui/card';
-import Ball from '../svgs/adventureWeek/ball'
-import Bar from '../svgs/adventureWeek/bar'
-import BarTest from '@/components/svgs/adventureWeek/Bar-test'
-import Snorkle from '../svgs/adventureWeek/snorkle'
+import Dia1 from '../svgs/adventureWeek/dia1';
+import Dia2 from '../svgs/adventureWeek/dia2';
+import Dia3 from '../svgs/adventureWeek/dia3';
 import { View, Text} from 'react-native';
 import { Button } from '@rneui/base';
-import { ModalActivitiesStart } from './modalActivitiesStart';
-import { ModalStart } from './modalStart';
-import { ModalOnGoing } from './modalOnGoing' 
-import { ModalFeedback } from './modalFeedback' 
+import { ModalActivitiesStart } from './modais/modalActivitiesStart';
+import { ModalStart } from './modais/modalStart';
+import { ModalOnGoing } from './modais/modalOnGoing' 
+import { ModalFeedback } from './modais/modalFeedback' 
 
 export const DiaryActivies = () =>{
     const [stateDiaryActivities,setStateDiaryActivities] = useState(false);
@@ -51,7 +47,21 @@ export const DiaryActivies = () =>{
                 </View>
             </View>
 
+            <View>
+                <View>
+                    <Dia1></Dia1>
+                </View>
 
+                <View>
+                    <Dia2></Dia2>
+                </View>
+
+                <View>
+                    <Dia3></Dia3>
+                </View>
+            </View>
+            
+    
             <View className='h-full w-full'>
                 <ModalActivitiesStart stateModal={statesModals[0]} onClose={()=>showModal(0)} onNext={async ()=>closeModal(0,1)} atividades={['Futebol', 'Volei', 'Basquete']} />
             </View>

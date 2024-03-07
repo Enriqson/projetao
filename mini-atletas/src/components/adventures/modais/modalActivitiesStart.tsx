@@ -1,7 +1,7 @@
 import { Modal,View, Text} from "react-native"
 import React from 'react';
 import { Button } from '@rneui/base';
-import Boy from '../svgs/adventureWeek/boy'
+import Boy from '../../svgs/adventureWeek/boy'
 
 export const ModalActivitiesStart = ( {stateModal, onClose, onNext, atividades}: { stateModal: boolean, onClose: () => void, onNext?: () => void, atividades: string[] }) =>{
     return(
