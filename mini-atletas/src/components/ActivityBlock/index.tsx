@@ -49,7 +49,7 @@ function ActivityBlock({
                   </View>
                 </View>
               </View>
-              <View className="justify-around flex-row space-x-12">
+              <View className="justify-around flex-row space-x-14">
                 <Text
                   className="text-[14px] text-left font-normal"
                   style={textStyle}
@@ -58,7 +58,7 @@ function ActivityBlock({
                 </Text>
                 <View className='flex-row'>
                   <Text style={{ color: color_secondary }}>{activityMetadata["achievements"]}</Text>
-                  <Trophy />
+                  <Trophy color_primary={color_primary} color_secondary={color_secondary} />
                 </View>
               </View>
             </View>
