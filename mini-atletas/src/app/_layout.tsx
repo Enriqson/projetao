@@ -31,7 +31,11 @@ export default function Layout() {
         <Stack.Screen
           name="activity_details"
           options={{ headerShown: false }}
-        />
+      />
+        <Stack.Screen
+          name="date"
+          options={{ headerTitle: "Minhas Datas" }}
+        /> 
       </Stack>
       <NavBar />
     </>
