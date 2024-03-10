@@ -3,7 +3,18 @@ import React from "react";
 
 import { TAILWIND_THEME } from "@/utils/index";
 
-const OffsetBorder = ({
+interface OffsetBorderProps {
+  children: React.ReactNode;
+  leftOffset?: number;
+  bottomOffset?: number;
+  borderRadius?: number;
+  color_primary?: string;
+  color_secondary?: string;
+  width?: number;
+  height?: number ;
+}
+
+const OffsetBorder: React.FC<OffsetBorderProps> = ({
   children,
   leftOffset = 10,
   bottomOffset = 10,
