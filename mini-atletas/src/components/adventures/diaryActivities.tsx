@@ -14,6 +14,7 @@ import { ModalFeedback } from './modais/modalFeedback'
 
 export const DiaryActivies = () =>{
     const [stateDiaryActivities,setStateDiaryActivities] = useState(false);
+    const [atividade , setAtividade] = useState();
     const [statesModals, setStateModals] = useState<boolean[]>(Array.from({length:5}, ()=>false));
     
     const showModal = (index:number) => {
@@ -63,19 +64,19 @@ export const DiaryActivies = () =>{
             
     
             <View className='h-full w-full'>
-                <ModalActivitiesStart stateModal={statesModals[0]} onClose={()=>showModal(0)} onNext={async ()=>closeModal(0,1)} atividades={['Futebol', 'Volei', 'Basquete']} />
+                <ModalActivitiesStart stateModal={statesModals[0]} onClose={()=>showModal(0)} onNext={async ()=>closeModal(0,1)} atividades={['futebol', 'xadrez', 'pular corda']} setAtividade={setAtividade} />
             </View>
 
             <View className='h-full w-full'>
-                <ModalStart stateModal={statesModals[1]} onClose={()=>showModal(1)} onNext={async ()=>closeModal(1,2)} atividade='futebol'/>
+                <ModalStart stateModal={statesModals[1]} onClose={()=>showModal(1)} onNext={async ()=>closeModal(1,2)} atividade={atividade}/>
             </View>
 
             <View className='h-full w-full'>
-                <ModalOnGoing stateModal={statesModals[2]} onClose={()=>showModal(2)} onNext={async ()=>closeModal(2,3)} atividade='futebol'/>
+                <ModalOnGoing stateModal={statesModals[2]} onClose={()=>showModal(2)} onNext={async ()=>closeModal(2,3)} atividade={atividade}/>
             </View>
 
             <View className='h-full w-full'>
-                <ModalFeedback stateModal={statesModals[3]} onClose={()=>showModal(3)} onNext={async ()=>closeModal(3,4)} atividade='futebol'/>
+                <ModalFeedback stateModal={statesModals[3]} onClose={()=>showModal(3)} onNext={async ()=>closeModal(3,4)} atividade={atividade}/>
             </View>
 
             
