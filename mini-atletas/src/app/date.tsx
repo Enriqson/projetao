@@ -4,6 +4,8 @@ import Block from "@/components/Block";
 import Girl from "@/components/svgs/dates/girl";
 import Trophy from "@/components/svgs/dates/trophy";
 import PlusIcon from "@/components/svgs/dates/plusIcon";
+import ACTIVITY_METADATA from "@/utils/activityMetadata";
+import { TAILWIND_THEME } from "@/utils";
 
 export default function Page() {
   return (
@@ -23,16 +25,17 @@ function Content() {
         dates: {
           "1": {
             activityName: "soccer",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Maria",
             time: "30 minutos",
-            activitySvg: "Ball",
+            color: "blue",
           },
           "12": {
             activityName: "rope_jumping",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Leticia",
             time: "10 minutos",
+            color: "pink",
           },
         },
       },
@@ -41,15 +44,17 @@ function Content() {
         dates: {
           "1": {
             activityName: "soccer",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Maria",
             time: "30 minutos",
+            color: "blue",
           },
           "12": {
             activityName: "rope_jumping",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Leticia",
             time: "10 minutos",
+            color: "pink",
           },
         },
       },
@@ -58,15 +63,17 @@ function Content() {
         dates: {
           "1": {
             activityName: "soccer",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Maria",
             time: "30 minutos",
+            color: "blue",
           },
           "12": {
             activityName: "chess",
-            profileImage: "girl2",
+            profileImage: "girl",
             profileName: "Leticia",
             time: "5 partidas",
+            color: "green",
           },
         },
       },
@@ -75,11 +82,18 @@ function Content() {
     setMonths(mockData);
   }, []);
 
+  const activityTranslations = {
+    soccer: "Futebol",
+    rope_jumping: "Pular corda",
+    chess: "Xadrez",
+    // Adicionar outras atividades
+  };
+
   return (
     <ScrollView>
-      <View className="w-4/5 lg:w-2/4 self-center h-[175vh] justify-start items-center">
+      <View className="w-4/5 lg:w-2/4 self-center h-[180vh] justify-start items-center">
         {months.map((month, index) => (
-          <Month key={index} month={month} />
+          <Month key={index} month={month} activityTranslations={activityTranslations} />
         ))}
         <View>
           <Block
@@ -97,7 +111,7 @@ function Content() {
   );
 }
 
-function Month({ month }) {
+function Month({ month, activityTranslations }) {
   return (
     <View className="items-center my-4">
       <Text
@@ -110,16 +124,19 @@ function Month({ month }) {
         {month.name}
       </Text>
       {Object.entries(month.dates).map(([day, activity], i) => (
-        <Day key={i} day={day} activity={activity} />
+        <Day key={i} day={day} activity={activity} activityTranslations={activityTranslations} />
       ))}
     </View>
   );
 }
 
-function Day({ day, activity }) {
+function Day({ day, activity, activityTranslations }) {
+  const activityMetadata = ACTIVITY_METADATA[activity.activityName];
+  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
+  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
   return (
     <View className="flex-row space-x-3">
-      <View className="mr-[10px]">
+      <View className="mr-[11px]">
         <Block activityName={activity.activityName} heigh={146} width={163}>
           <View>
             <Text
@@ -133,8 +150,8 @@ function Day({ day, activity }) {
               Dia {day}
             </Text>
             <View className="flex-row items-end">
-              <Girl />
-              <Trophy />
+              <Girl colorSecondary={color_secondary} />
+              <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
             </View>
           </View>
         </Block>
@@ -151,14 +168,14 @@ function Day({ day, activity }) {
                   color: "#545F71",
                 }}
               >
-                {activity.activityName}
+                {activityTranslations[activity.activityName]}
                 {"\n"}com
               </Text>
               <Text
                 style={{
                   fontSize: 24,
                   fontWeight: "500",
-                  color: "#8928C5",
+                  color: color_secondary,
                 }}
               >
                 {activity.profileName}
@@ -173,7 +190,7 @@ function Day({ day, activity }) {
                 {activity.time}
               </Text>
               <View className="flex-row items-end">
-                <Trophy />
+              <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
                 <Text
                   style={{
                     fontSize: 12,
@@ -191,4 +208,3 @@ function Day({ day, activity }) {
     </View>
   );
 }
-

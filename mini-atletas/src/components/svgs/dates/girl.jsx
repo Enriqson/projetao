@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, { Mask, Path, G, Circle } from "react-native-svg"
-const Girl = (props) => (
+const Girl = ({colorSecondary, ...props}) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={78}
@@ -70,7 +70,7 @@ const Girl = (props) => (
         d="m20.309 40.599.262-.386-.462-.064-.15-.194-.136-.175-.204.42-.439.157.168.162.17.163.013.466.412-.22.015.004.433.126-.082-.46ZM58.244 40.213l-.463-.064-.286-.369-.131.273-.073.148-.438.157.336.324.014.466.16-.086.252-.134.448.13-.082-.46.093-.137.17-.248ZM50.633 72.096a11.976 11.976 0 0 0-20.441-8.468 11.972 11.972 0 0 0-3.507 8.468v14.4h23.948v-14.4Z"
       />
     </G>
-    <Circle cx={38.5} cy={39.5} r={34.5} stroke="#8928C5" strokeWidth={4} />
+    <Circle cx={38.5} cy={39.5} r={34.5} stroke={colorSecondary} strokeWidth={4} />
   </Svg>
 )
 export default Girl
