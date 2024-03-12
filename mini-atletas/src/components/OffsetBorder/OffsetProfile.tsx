@@ -3,7 +3,7 @@ import React from "react";
 
 import { TAILWIND_THEME } from "@/utils/index";
 
-const OffsetBorder2 = ({
+const OffsetProfile = ({
     children,
     leftOffset = 10,
     bottomOffset = 10,
@@ -31,5 +31,5 @@ const OffsetBorder2 = ({
     );
   };
   
-  export default OffsetBorder2;
+  export default OffsetProfile;
   

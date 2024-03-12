@@ -15,7 +15,7 @@ import { default as AchievementSvg } from "@/components/svgs/misc/achievement";
 import { Link } from "expo-router";
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder/index";
-import OffsetBorder2 from "@/components/OffsetBorder/bordaperfil";
+import OffsetProfile from "@/components/OffsetBorder/OffsetProfile";
 import Trofeu from "@/components/svgs/profile/trophy"
 import Avatar, {
   AvatarFullConfig,
@@ -123,7 +123,7 @@ const ProfileContent = ({ userName }) => {
       <View className="flex flex-col justify-start items-center h-[120vh]">
         <View>
           <View className="mb-3">
-            <OffsetBorder2>
+            <OffsetProfile>
             <View className="bg bg-white h-[160px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row"> 
               
               <View className="-mr-8">
@@ -141,7 +141,7 @@ const ProfileContent = ({ userName }) => {
               </View>
 
             </View>
-          </OffsetBorder2>
+          </OffsetProfile>
           </View>
 
           <AchievementSection></AchievementSection>
