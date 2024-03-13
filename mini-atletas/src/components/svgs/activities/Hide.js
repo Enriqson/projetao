@@ -3,6 +3,7 @@ import Svg, { Path } from "react-native-svg"
 const Esconde = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 82 82"
     width={82}
     height={82}
     fill="none"

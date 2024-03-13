@@ -6,6 +6,7 @@ import Trophy from "@/components/svgs/dates/trophy";
 import PlusIcon from "@/components/svgs/dates/plusIcon";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import { TAILWIND_THEME } from "@/utils";
+import Ball from "@/components/svgs/activities/Ball";
 
 export default function Page() {
   return (
@@ -158,8 +159,10 @@ function Day({ day, activity, activityTranslations }) {
       </View>
       <View>
         <Block activityName={activity.activityName} heigh={146} width={194}>
-          <View className="flex-row ">
-            <View></View>
+          <View className="flex-row w-[170px] justify-around">
+            <View className="mt-[10px]">
+              <Ball width={50} height={50} />
+            </View>
             <View>
               <Text
                 style={{
