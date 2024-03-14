@@ -24,6 +24,9 @@ import Rope from "@/components/svgs/activities/Rope";
 import Bike from "@/components/svgs/activities/Bike";
 import Chess from "@/components/svgs/activities/Chess";
 import Hide from "@/components/svgs/activities/Hide";
+import Esporte from "@/components/svgs/profile/Esporte";
+import Lt from "@/components/svgs/profile/Lt";
+import Gt from "@/components/svgs/profile/Gt";
 
 
 function ProfileParent() {
@@ -53,24 +56,34 @@ function ProfileParent() {
   );
 }
 
-function MinhasDatas () {
+function MyDates ({ userName, dia }) {
   return (
     <View className="mb-[10px]">
     <View className="my-[10px] ml-[25px]">
-      <Text className="text-xl text-gray-600 ">Minhas Datas</Text>
+      <Text className="text-xl text-gray-600 font-semibold">Minhas Datas</Text>
     </View>
     <OffsetBorder>
     <View className="bg bg-white h-[200px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2"> 
-      <View>
-      <Text >Março</Text>
+      <View className="flex-row">
+      <Text className="mt-2"><Lt></Lt></Text>
+      <Text className="text-2xl font-bold opacity-60">Março</Text>
+      <Text className="mt-2 ml-2"><Gt></Gt></Text>
+      
       </View>
 
       <View className="flex-row mb-3">
-        <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[50px] justify-around items-center px-4 py-2 flex-row mr-1">
-          Oi
+        <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[100px] justify-around items-center px-4 py-2 flex-col mr-1">
+          <View><Esporte></Esporte></View>
+          <View className="text-xl font-bold opacity-60">Futebol</View>
         </View>
-        <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[50px] justify-around items-center px-4 py-2 flex-row ml-2">
-          Oi
+        <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[250px] justify-around items-center px-4 py-2 flex-row ml-2">
+        <Avatar size={75}></Avatar>
+        <View className="flew-col">
+          <Text className="font-bold text-xl color-purple">{userName}</Text>
+          <Text className="text-sm font-semibold opacity-60">Dia {dia}</Text>
+        </View>
+        
+    
         </View>
       </View>
       
@@ -111,7 +124,7 @@ function AchievementSection() {
   return (
     <View className="mb-[10px]">
       <View className="my-[10px] ml-[25px]">
-        <Text className="text-xl text-gray-400 ">Minhas conquistas</Text>
+        <Text className="text-xl text-gray-600 font-semibold">Minhas conquistas</Text>
       </View>
 
       <OffsetBorder>
@@ -161,8 +174,9 @@ function GroupSection() {
   return (
     <>
       <View className="my-[10px] ml-[25px]">
-        <Text className="text-xl text-gray-400 flex items-center">
-          Meu grupos
+        <Text className="text-xl text-gray-600 font-semibold flex items-center">
+        
+          Meus grupos
           <View className="absolute right-0">
             <TouchableOpacity>
               <SetaDireita></SetaDireita>
@@ -181,11 +195,11 @@ function GroupSection() {
   );
 }
 
-function ActivitySection() {
+function ActivitySectionChild() {
   return (
     <>
-      <View className="mb-[10px]">
-        <Text className="text-lg text-gray-500 md:text-xl dark:text-gray-400 flex items-center">
+      <View className="my-[10px] ml-[25px]">
+        <Text className="text-xl text-gray-600 font-semibold flex items-center">
           Minhas atividades
           <View className="ml-auto">
             <Link href="/activities">
@@ -195,37 +209,7 @@ function ActivitySection() {
             </Link>
           </View>
         </Text>
-      </View>
-    </>
-  );
-}
-
-const ProfileContent = ({ userName, isParent  }) => {
-  return (
-    <ScrollView className="">
-      <View className="flex flex-col justify-start items-center h-[120vh]">
-        <View>
-          <View className="mb-3">
-            {isParent ? (
-                <ProfileParent/>
-              ) : (
-                <ProfileChield userName={userName} />
-              )}
-          </View>
-
-          {isParent ? (
-                <MinhasDatas/>
-              ) : (
-                <AchievementSection></AchievementSection>
-              )}
-
-          
-
-          <View className="my-[5px] flex justify-between">
-            <GroupSection></GroupSection>
-            <ActivitySection></ActivitySection>
-          </View>
-          <View className=" w-4/5 lg:w-2/4 self-center h-[120vh] justify-start">
+        <View className=" w-4/5 lg:w-2/4 self-center h-[120vh] justify-start">
             <View
               style={{
                 flexGrow: 1,
@@ -256,6 +240,88 @@ const ProfileContent = ({ userName, isParent  }) => {
               />
             </View>
           </View>
+      </View>
+    </>
+  );
+}
+
+function ActivitySectionParent() {
+  return (
+    <>
+      <View className="my-[10px] ml-[25px]">
+        <Text className="text-xl text-gray-600 font-semibold flex items-center">
+          Minhas atividades
+          <View className="ml-auto">
+            <Link href="/activities">
+              <TouchableOpacity>
+                <SetaDireita></SetaDireita>
+              </TouchableOpacity>
+            </Link>
+          </View>
+        </Text>
+        <View className=" w-4/5 lg:w-2/4 self-center h-[120vh] justify-start">
+            <View
+              style={{
+                flexGrow: 1,
+                alignItems: "center",
+                flexDirection: "column",
+                flexShrink: 1,
+              }}
+            >
+              <ActivityBlock
+                activityName="soccer"
+                ActivitySvg={Ball}
+              />
+            </View>
+          </View>
+      </View>
+    </>
+  );
+}
+
+function ParedProfile(){
+  return(
+    <View></View>
+  )
+}
+
+
+const ProfileContent = ({ userName, isParent  }) => {
+  return (
+    <ScrollView className="">
+      <View className="flex flex-col justify-start items-center h-[120vh]">
+        <View>
+          <View className="mb-3">
+            {isParent ? (
+                <ProfileParent/>
+              ) : (
+                <ProfileChield userName={userName} />
+              )}
+          </View>
+
+          {isParent ? (
+                <MyDates userName={userName} dia={27}/>
+              ) : (
+                <AchievementSection></AchievementSection>
+              )}
+
+          
+          
+                
+          <View className="my-[5px] flex justify-between">
+            {isParent ? (
+                <Text></Text>
+              ) : (
+                <GroupSection></GroupSection>
+              )}
+          </View>
+          
+          {isParent ? (
+                <ActivitySectionParent></ActivitySectionParent>
+              ) : (
+                <ActivitySectionChild></ActivitySectionChild>
+              )}
+
         </View>
       </View>
     </ScrollView>
@@ -268,7 +334,6 @@ export default function Page() {
     <View className="flex flex-1">  
       <View className="mt-8">
         <ProfileContent userName="Leticia" isParent={true}></ProfileContent>
-
       </View>
     </View>
     
