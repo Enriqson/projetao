@@ -3,6 +3,7 @@ import Svg, { Path } from "react-native-svg"
 const Ball = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 84 85"
     width={84}
     height={85}
     fill="none"
