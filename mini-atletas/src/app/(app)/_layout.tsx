@@ -12,7 +12,7 @@ export default function Layout() {
     // in the headless Node process that the pages are rendered in.
     return <Redirect href="/sign-in" />;
   }
-  console.log(session)
+  
   return (
     <>
       <Stack
