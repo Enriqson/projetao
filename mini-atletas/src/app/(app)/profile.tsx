@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 //import  ProfileContent  from '@/components/profile/ProfileContent'
 import Girl2 from "@/components/svgs/profile/girl2";
@@ -27,6 +27,9 @@ import Hide from "@/components/svgs/activities/Hide";
 import Esporte from "@/components/svgs/profile/Esporte";
 import Lt from "@/components/svgs/profile/Lt";
 import Gt from "@/components/svgs/profile/Gt";
+import { useAuth } from "@/providers/AuthProvider";
+import { supabase } from "@/config/supabase";
+
 
 
 function ProfileParent() {
@@ -57,6 +60,30 @@ function ProfileParent() {
 }
 
 function MyDates ({ userName, dia }) {
+  const { user } = useAuth();
+  const [avatarConfig, setAvatarConfig] = useState(null);
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      let { data, error } = await supabase
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const avatarConfig = JSON.parse(data.avatar_config);
+        setAvatarConfig(avatarConfig);
+      }
+    }
+
+    fetchAvatar();
+  }, [user]);
   return (
     <View className="mb-[10px]">
     <View className="my-[10px] ml-[25px]">
@@ -77,7 +104,7 @@ function MyDates ({ userName, dia }) {
           <View className="text-xl font-bold opacity-60">Futebol</View>
         </View>
         <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[250px] justify-around items-center px-4 py-2 flex-row ml-2">
-        <Avatar size={75}></Avatar>
+        <Avatar size={75} {...avatarConfig}></Avatar>
         <View className="flew-col">
           <Text className="font-bold text-xl color-purple">{userName}</Text>
           <Text className="text-sm font-semibold opacity-60">Dia {dia}</Text>
@@ -96,13 +123,37 @@ function MyDates ({ userName, dia }) {
 
 
 function ProfileChield({ userName }) {
+  const { user } = useAuth();
+  const [avatarConfig, setAvatarConfig] = useState(null);
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      let { data, error } = await supabase
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const avatarConfig = JSON.parse(data.avatar_config);
+        setAvatarConfig(avatarConfig);
+      }
+    }
+
+    fetchAvatar();
+  }, [user]);
   return(
     
     <OffsetProfile>
     <View className="bg bg-white h-[160px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row"> 
       
       <View className="-mr-8">
-          <Avatar size={125}></Avatar>
+          <Avatar size={125} {...avatarConfig} ></Avatar>
       </View>
 
       <View>
@@ -287,6 +338,7 @@ function ParedProfile(){
 
 
 const ProfileContent = ({ userName, isParent  }) => {
+
   return (
     <ScrollView className="">
       <View className="flex flex-col justify-start items-center h-[120vh]">
