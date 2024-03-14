@@ -7,6 +7,10 @@ import PlusIcon from "@/components/svgs/dates/plusIcon";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import { TAILWIND_THEME } from "@/utils";
 import Ball from "@/components/svgs/activities/Ball";
+import Bike from "@/components/svgs/activities/Bike";
+import Chess from "@/components/svgs/activities/Chess";
+import Hide from "@/components/svgs/activities/Hide";
+import Rope from "@/components/svgs/activities/Rope";
 
 export default function Page() {
   return (
@@ -29,14 +33,12 @@ function Content() {
             profileImage: "girl",
             profileName: "Maria",
             time: "30 minutos",
-            color: "blue",
           },
           "12": {
             activityName: "rope_jumping",
             profileImage: "girl",
             profileName: "Leticia",
             time: "10 minutos",
-            color: "pink",
           },
         },
       },
@@ -48,14 +50,12 @@ function Content() {
             profileImage: "girl",
             profileName: "Maria",
             time: "30 minutos",
-            color: "blue",
           },
           "12": {
-            activityName: "rope_jumping",
+            activityName: "hide_and_seek",
             profileImage: "girl",
             profileName: "Leticia",
-            time: "10 minutos",
-            color: "pink",
+            time: "3 partidas",
           },
         },
       },
@@ -63,18 +63,16 @@ function Content() {
         name: "Junho",
         dates: {
           "1": {
-            activityName: "soccer",
-            profileImage: "girl",
-            profileName: "Maria",
-            time: "30 minutos",
-            color: "blue",
-          },
-          "12": {
             activityName: "chess",
             profileImage: "girl",
-            profileName: "Leticia",
+            profileName: "Maria",
             time: "5 partidas",
-            color: "green",
+          },
+          "12": {
+            activityName: "cycling",
+            profileImage: "girl",
+            profileName: "Leticia",
+            time: "30 minutos",
           },
         },
       },
@@ -87,12 +85,13 @@ function Content() {
     soccer: "Futebol",
     rope_jumping: "Pular corda",
     chess: "Xadrez",
-    // Adicionar outras atividades
+    cycling: "Andar de Bicicleta",
+    hide_and_seek: "Pique esconde",
   };
 
   return (
     <ScrollView>
-      <View className="w-4/5 lg:w-2/4 self-center h-[180vh] justify-start items-center">
+      <View className="w-4/5 lg:w-2/4 self-center h-[190vh] justify-start items-center">
         {months.map((month, index) => (
           <Month key={index} month={month} activityTranslations={activityTranslations} />
         ))}
@@ -135,10 +134,32 @@ function Day({ day, activity, activityTranslations }) {
   const activityMetadata = ACTIVITY_METADATA[activity.activityName];
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
+
+  let ActivitySVG;
+  switch (activity.activityName) {
+    case "soccer":
+      ActivitySVG = Ball;
+      break;
+    case "cycling":
+      ActivitySVG = Bike;
+      break;
+    case "chess":
+      ActivitySVG = Chess;
+      break;
+    case "hide_and_seek":
+      ActivitySVG = Hide;
+      break;
+    case "rope_jumping":
+      ActivitySVG = Rope;
+      break;
+    default:
+      ActivitySVG = null;
+  }
+
   return (
     <View className="flex-row space-x-3">
       <View className="mr-[11px]">
-        <Block activityName={activity.activityName} heigh={146} width={163}>
+        <Block activityName={activity.activityName} heigh={158} width={163}>
           <View>
             <Text
               style={{
@@ -158,12 +179,12 @@ function Day({ day, activity, activityTranslations }) {
         </Block>
       </View>
       <View>
-        <Block activityName={activity.activityName} heigh={146} width={194}>
+        <Block activityName={activity.activityName} heigh={158} width={194}>
           <View className="flex-row w-[170px] justify-around">
-            <View className="mt-[10px]">
-              <Ball width={50} height={50} />
+            <View className="mt-[15px] mr-[20px] ml-[10px]">
+              {ActivitySVG && <ActivitySVG width={60} height={60} />}
             </View>
-            <View>
+            <View className="w-3/5">
               <Text
                 style={{
                   fontSize: 16,
@@ -193,7 +214,7 @@ function Day({ day, activity, activityTranslations }) {
                 {activity.time}
               </Text>
               <View className="flex-row items-end">
-              <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
+                <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
                 <Text
                   style={{
                     fontSize: 12,
