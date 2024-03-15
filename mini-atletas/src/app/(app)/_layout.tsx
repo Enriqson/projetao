@@ -12,14 +12,14 @@ export default function Layout() {
     // in the headless Node process that the pages are rendered in.
     return <Redirect href="/sign-in" />;
   }
-  
+
   return (
     <>
       <Stack
         screenOptions={{
           headerTintColor: TAILWIND_THEME.colors.blue,
           headerTitleAlign: "center",
-          headerRight: (props) => <SignOutButton/>,
+          headerRight: (props) => <SignOutButton />,
         }}
       >
         <Stack.Screen name="avatar" options={{ headerTitle: "Avatar" }} />
@@ -51,7 +51,11 @@ export default function Layout() {
         <Stack.Screen
           name="date"
           options={{ headerTitle: "Minhas Datas" }}
-        /> 
+        />
+        <Stack.Screen
+          name="pairedProfile"
+          options={{ headerTitle: "Perfil Pareado" }}
+        />
       </Stack>
       <NavBar />
     </>
