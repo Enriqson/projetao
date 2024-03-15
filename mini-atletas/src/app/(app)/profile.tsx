@@ -54,6 +54,7 @@ function ProfileParent() {
 function MyDates({ userName, dia }) {
   const { user } = useAuth();
   const [avatarConfig, setAvatarConfig] = useState(null);
+  const [ChildConfig, setChildConfig] = useState(null);
 
   useEffect(() => {
     async function fetchAvatar() {
@@ -74,8 +75,29 @@ function MyDates({ userName, dia }) {
       }
     }
 
+    async function fetchChild() {
+      let { data, error } = await supabase
+        .from("parent_child")
+        .select()
+
+      if (error) {
+        console.error("Error fetching Child:", error.message);
+        return;
+      }
+
+      if (data) {
+        //const is_parent = JSON.parse(data.child_id);
+        setChildConfig(ChildConfig);
+        console.log("CHIIIILD CONFIG")
+        console.log(ChildConfig);
+      }
+    }
+
+    fetchChild();
     fetchAvatar();
   }, [user]);
+  
+  
   return (
     <View className="mb-[10px]">
       <View className="my-[10px] ml-[25px]">
@@ -86,13 +108,13 @@ function MyDates({ userName, dia }) {
       <OffsetBorder>
         <View className="bg bg-white h-[200px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2">
           <View className="flex-row">
-            <Text className="mt-2">
+            <View className="mt-2">
               <Lt></Lt>
-            </Text>
+            </View>
             <Text className="text-2xl font-bold opacity-60">Março</Text>
-            <Text className="mt-2 ml-2">
+            <View className="mt-2 ml-2">
               <Gt></Gt>
-            </Text>
+            </View>
           </View>
 
           <View className="flex-row mb-3">
@@ -100,7 +122,7 @@ function MyDates({ userName, dia }) {
               <View>
                 <Esporte></Esporte>
               </View>
-              <View className="text-xl font-bold opacity-60">Futebol</View>
+              <Text className="text-xl font-bold opacity-60">Futebol</Text>
             </View>
             <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[250px] justify-around items-center px-4 py-2 flex-row ml-2">
               <Avatar size={75} {...avatarConfig}></Avatar>
@@ -245,14 +267,14 @@ function GroupSection() {
       </View>
 
       <View className="mb-[10px]">
-        <Text className="flex-row left-2 items-start">
+        <View className="flex-row left-2 items-start">
           <View>
             <GrupoFutebol />
           </View>
           <View>
             <GrupoPique />
           </View>
-        </Text>
+        </View>
       </View>
     </>
   );
@@ -317,9 +339,35 @@ const ProfileContent = ({ userName, isParent }) => {
 };
 
 export default function Page() {
+  const { user } = useAuth();
+  const [is_parent, setis_parent] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      let { data, error } = await supabase
+        .from("users")
+        .select("is_parent")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const is_parent = JSON.parse(data.is_parent);
+        setis_parent(is_parent);
+      }
+    }
+
+    fetchUser();
+  }, [user]);
+
+  console.log(is_parent)
   return (
     <View className="flex flex-1 mt-8">
-      <ProfileContent userName="Leticia" isParent={false}></ProfileContent>
+      <ProfileContent userName="Leticia" isParent={true}></ProfileContent>
     </View>
   );
 }
