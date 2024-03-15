@@ -3,7 +3,6 @@ import { useLocalSearchParams } from 'expo-router';
 import ACTIVITY_METADATA from '@/utils/activityMetadata';
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder";
-import { Svg } from "react-native-svg";
 
 export default function Page() {
   const { activity } = useLocalSearchParams();

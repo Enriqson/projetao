@@ -37,9 +37,21 @@ export default function Layout() {
           options={{ headerTitle: "Minhas Atividades" }}
         />
         <Stack.Screen
+          name="adventureWeek"
+          options={{ headerTitle: "Minhas Aventuras" }}
+        />
+        <Stack.Screen
           name="activity_details"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="achievement_details"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="date"
+          options={{ headerTitle: "Minhas Datas" }}
+        /> 
       </Stack>
       <NavBar />
     </>
