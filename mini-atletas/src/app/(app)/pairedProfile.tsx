@@ -3,7 +3,7 @@ import Girl from "@/components/svgs/dates/girl";
 import React from "react";
 import { View, ScrollView, Text } from "react-native";
 import WeekPorcent from "@/components/svgs/profile/WeekPorcent";
-import Trophy from "@/components/svgs/dates/trophy";
+import Trophy from "@/components/svgs/misc/Trophy";
 import Clock from "@/components/svgs/profile/Clock";
 import Atacker from "@/components/svgs/profile/Atacker";
 import Fast from "@/components/svgs/profile/Fast";
