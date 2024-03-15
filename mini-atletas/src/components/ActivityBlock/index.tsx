@@ -33,9 +33,9 @@ function ActivityBlock({
             >
               {activityAlias}
             </Text>
-            <View className="justify-around items-start flex-col text-[14px] font-normal space-y-5">
+            <View className="justify-around items-start flex-col text-[14px] font-normal">
               <View>
-                <View className="flex-row justify-between">
+                <View className="flex-row justify-between" style={{ marginBottom: 20 }}>
                   <View className=" pr-5">
                     <Text
                       className="text-[14px] text-left font-normal"
@@ -49,16 +49,15 @@ function ActivityBlock({
                   </View>
                 </View>
               </View>
-              <View className="justify-around flex-row space-x-14">
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text
-                  className="text-[14px] text-left font-normal"
-                  style={textStyle}
+                  style={[textStyle, { marginRight: 50 }]}
                 >
                   Conquistas
                 </Text>
-                <View className='flex-row'>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text style={{ color: color_secondary }}>{activityMetadata["achievements"]}</Text>
-                  <Trophy color_primary={color_primary} color_secondary={color_secondary} />
+                  <Trophy color_primary={color_secondary} color_secondary={color_primary} />
                 </View>
               </View>
             </View>
