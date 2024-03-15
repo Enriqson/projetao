@@ -3,6 +3,7 @@ import Svg, { Path } from "react-native-svg"
 const Rope = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 53 96"
         width={53}
         height={96}
         fill="none"
