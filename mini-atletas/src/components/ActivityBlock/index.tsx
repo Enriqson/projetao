@@ -1,9 +1,9 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 import OffsetBorder from "@/components/OffsetBorder";
 import { TAILWIND_THEME } from "@/utils/index";
 import { Link } from "expo-router";
-import ACTIVITY_METADATA from '@/utils/activityMetadata';
+import ACTIVITY_METADATA from "@/utils/activityMetadata";
 
 function ActivityBlock({
   ActivitySvg,
@@ -33,19 +33,19 @@ function ActivityBlock({
             >
               {activityAlias}
             </Text>
-            <View className="justify-around items-start flex-col text-[14px] font-normal">
+            <View className="justify-around items-start flex-col text-[14px] font-medium">
               <View>
                 <View className="flex-row justify-between" style={{ marginBottom: 20 }}>
                   <View className=" pr-5">
                     <Text
-                      className="text-[14px] text-left font-normal"
+                      className="text-[14px] text-left font-medium"
                       style={textStyle}
                     >
                       Meta semanal:
                     </Text>
                   </View>
                   <View>
-                    <Text style={textStyle}>1 Hora</Text>
+                    <Text style={textStyle}>{activityMetadata.weeklyGoal}</Text>
                   </View>
                 </View>
               </View>
@@ -68,4 +68,4 @@ function ActivityBlock({
   );
 }
 
-export default ActivityBlock
+export default ActivityBlock;

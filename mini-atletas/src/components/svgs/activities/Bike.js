@@ -3,6 +3,7 @@ import Svg, { Path } from "react-native-svg"
 const Bike = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 111 80"
     width={111}
     height={80}
     fill="none"
