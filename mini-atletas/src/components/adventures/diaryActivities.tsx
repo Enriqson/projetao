@@ -46,16 +46,16 @@ export const DiaryActivies = () =>{
                 </View>
             </View>
 
-            <View>
-                <View>
+            <View className='flex-col w-3/4 lg:w-1/5 pt-8'>
+                <View className='items-start'>
                     <Dia1></Dia1>
                 </View>
 
-                <View>
+                <View className='items-end'>
                     <Dia2></Dia2>
                 </View>
 
-                <View>
+                <View className='items-start'>
                     <Dia3></Dia3>
                 </View>
             </View>

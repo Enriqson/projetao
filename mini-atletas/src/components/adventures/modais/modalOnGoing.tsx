@@ -1,11 +1,9 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
-import { Button } from "@rneui/base";
 import Chess from "@/components/svgs/activities/Chess";
 import Rope from "@/components/svgs/activities/Rope";
 import Ball from "@/components/svgs/activities/Ball";
 import ProgressBar from "../../svgs/adventureWeek/progressBar";
-import OffSetAdventuresWeek from "@/components/OffsetBorder/offSetAdventuresWeek";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
 

@@ -1,13 +1,8 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
-import Dinheiro from "../../svgs/adventureWeek/payment";
-import AlarmClock from "../../svgs/adventureWeek/alarmClock";
-import { default as AchievementSvg } from "@/components/svgs/misc/achievement";
 import Ball from "@/components/svgs/activities/Ball";
 import Chess from "@/components/svgs/activities/Chess";
 import Rope from "@/components/svgs/activities/Rope";
-import OffSetAdventuresWeek from "@/components/OffsetBorder/offSetAdventuresWeek";
-import { Button } from "@rneui/base";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
 

@@ -7,6 +7,7 @@ import { ThemeProvider } from "react-native-rapi-ui";
 export default function Root() {
   const images = [
     require("../../assets/login.png"),
+    require("../../assets/background.png"),
   ];
   return (
     

@@ -1,12 +1,10 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
-import { Button } from "@rneui/base";
 import TerrifiedSvg from "@/components/svgs/feedback/Terrified";
 import SadSvg from "@/components/svgs/feedback/Sad";
 import NeutralSvg from "@/components/svgs/feedback/Neutral";
 import HappySvg from "@/components/svgs/feedback/Happy";
 import ExcitedSvg from "@/components/svgs/feedback/Excited";
-import OffSetAdventuresWeek from "@/components/OffsetBorder/offSetAdventuresWeek";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
 

@@ -1,7 +1,6 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
 import { LinearProgress } from "@rneui/themed";
-import { SelectBar } from "../selectBar";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
 import { Button } from '@rneui/base';
