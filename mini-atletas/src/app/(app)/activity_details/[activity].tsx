@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { useLocalSearchParams } from 'expo-router';
 import ACTIVITY_METADATA from '@/utils/activityMetadata';
 import { TAILWIND_THEME } from "@/utils/index";
@@ -74,15 +74,11 @@ export function StartButton({ onPress, children, activity }) {
   return (
     <Pressable onPress={onPress}>
       {({ pressed }) => (
-        <View>
-          <View className="justify-center items-center border-black border-[2px] rounded-[25px] bg-white w-[251px] h-[50px]"
-            style={{
-              backgroundColor: pressed ? color_secondary : 'white',
-              borderColor: pressed ? color_secondary : 'black',
-              transform: [{ rotate: "-1.57deg" }],
-              zIndex: 1,
-            }}
-          >
+        <View style={styles.container}>
+          <View style={[styles.button, {
+            backgroundColor: pressed ? color_secondary : 'white',
+            borderColor: pressed ? color_secondary : 'black',
+          }]}>
             <Text style={{
               color: pressed ? '#FFFFFF' : '#545F71',
               fontFamily: "Kanit",
@@ -92,19 +88,38 @@ export function StartButton({ onPress, children, activity }) {
               {children}
             </Text>
           </View>
-          <View className="border-[2px] rounded-[25px] bg-white w-[251px] h-[50px] mt-[-43px]"
-            style={{
-              backgroundColor: pressed ? color_primary : 'white',
-              transform: [{ rotate: "-1.57deg" }],
-              borderColor: color_secondary,
-              zIndex: 0,
-            }}
-          >
+          <View style={[styles.button, styles.buttonOffset, {
+            backgroundColor: pressed ? color_primary : 'white',
+            borderColor: color_secondary,
+          }]}>
           </View>
         </View>
       )}
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    width: 251,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: 'black',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{ rotate: "-1.57deg" }],
+    zIndex: 1,
+  },
+  buttonOffset: {
+    marginTop: -43,
+    zIndex: 0,
+  },
+});
 
 

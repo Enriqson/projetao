@@ -5,12 +5,15 @@ import { TAILWIND_THEME } from "@/utils/index";
 import { Link } from "expo-router";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 
-function ActivityBlock({ ActivitySvg, activityName }) {
-  const activityMetadata = ACTIVITY_METADATA[activityName];
-  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
-  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
-  const activityAlias = activityMetadata.alias;
-  const Trophy = activityMetadata.Trophy;
+function ActivityBlock({
+  ActivitySvg,
+  activityName,
+}) {
+  const activityMetadata = ACTIVITY_METADATA[activityName]
+  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]]
+  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]]
+  const activityAlias = activityMetadata.alias
+  const Trophy = activityMetadata.Trophy
 
   const textStyle = {
     color: color_secondary,
@@ -30,12 +33,12 @@ function ActivityBlock({ ActivitySvg, activityName }) {
             >
               {activityAlias}
             </Text>
-            <View className="justify-around items-start flex-col text-[14px] font-medium space-y-5 pt-2">
+            <View className="justify-around items-start flex-col text-[14px] font-medium">
               <View>
-                <View className="flex-row justify-between">
+                <View className="flex-row justify-between" style={{ marginBottom: 20 }}>
                   <View className=" pr-5">
                     <Text
-                      className="text-[15px] text-left font-medium"
+                      className="text-[14px] text-left font-medium"
                       style={textStyle}
                     >
                       Meta semanal:
@@ -46,21 +49,15 @@ function ActivityBlock({ ActivitySvg, activityName }) {
                   </View>
                 </View>
               </View>
-              <View className="justify-around flex-row space-x-14">
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text
-                  className="text-[15px] text-left font-medium"
-                  style={textStyle}
+                  style={[textStyle, { marginRight: 50 }]}
                 >
-                  Conquistas:
+                  Conquistas
                 </Text>
-                <View className="flex-row ">
-                  <Text style={{ color: color_secondary }}>
-                    {activityMetadata["achievements"]}
-                  </Text>
-                  <Trophy
-                    color_primary={color_primary}
-                    color_secondary={color_secondary}
-                  />
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={{ color: color_secondary }}>{activityMetadata["achievements"]}</Text>
+                  <Trophy color_primary={color_secondary} color_secondary={color_primary} />
                 </View>
               </View>
             </View>
