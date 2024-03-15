@@ -1,8 +1,10 @@
-import { Modal, View, Text } from "react-native";
+import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
-import { Button } from "@rneui/base";
 import { LinearProgress } from "@rneui/themed";
 import { SelectBar } from "../selectBar";
+import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
+import SampleIcon from "@/components/svgs/adventureWeek/sample";
+import { Button } from '@rneui/base';
 
 export const ModalActivitiesStart = ({
   stateModal,
@@ -10,24 +12,27 @@ export const ModalActivitiesStart = ({
   onNext,
   atividades,
   setAtividade,
-  stateDiaryActivities,
-  showModal,
 }: {
   stateModal: boolean;
   onClose: () => void;
   setAtividade: (atividade) => void;
   onNext?: () => void;
   atividades: string[];
-  stateDiaryActivities:boolean;
-  showModal:()=>void;
 }) => {
   return (
     <Modal animationType="fade" transparent={true} visible={stateModal}>
-      <View className="w-full h-[4rem] bg bg-blue bg-opacity-20"/>
-      <View className="flex justify-top items-center h-full w-full bg bg-blue bg-opacity-30">
+      <View className="w-full h-[5.5rem]"/>
+      <View className="flex justify-top items-center h-full w-full ">
         
-        <View className='absolute justify-end h-[6%]  w-5/6  bg bg-modal_blue_board mt-8  border-solid border-modal_blue_board border-2  rounded-[2rem] z-0 '/>
-        <SelectBar stateButton={stateDiaryActivities} showModal={()=>{showModal()}} height='[6%]'/>
+        <View className='absolute justify-end h-[6%]  w-5/6  bg bg-modal_blue_board mt-2  border-solid border-modal_blue_board border-2  rounded-[2rem] z-0 '/>
+        <View className='relative  h-[6.0%] w-5/6  bg   bg-white border-solid  border-2  rounded-[2rem] z-1'>
+          <View className='flex flex-row items-center h-full justify-between pl-2'>
+              <Text>Atividades diárias</Text>
+              <Button type='clear' title='test' onPress={onClose}>
+                  {stateModal ? <SampleIcon/> : <HiddeIcon/>}
+              </Button>
+          </View>
+        </View>
 
         <View className="flex  pt-8  h-full w-full bg relative">
           <View className="flex items-center w-full h-[30%]">
@@ -43,7 +48,7 @@ export const ModalActivitiesStart = ({
                       color="#2859C5"
                       value={0.3}
                       style={{
-                        height: "30%",
+                        height: "25%",
                         borderWidth: 3,
                         borderRadius: 10,
                         backgroundColor: "rgba(0, 0, 0, 0)",
@@ -53,7 +58,7 @@ export const ModalActivitiesStart = ({
                   </View>
 
                   <View className="flex justify-end pt-2 w-full h-[60%] ">
-                    <View className="flex justify-between bg w-full h-[80%] ">
+                    <View className="flex justify-between bg w-full h-[90%]">
                       {atividades.map((atividade, index) => (
                         <View
                           key={index}
@@ -62,22 +67,26 @@ export const ModalActivitiesStart = ({
                           <View className="pl-6  h-full w-1/2">
                             <Text className="">{atividade}</Text>
                           </View>
-                          <View className="flex items-end pr-6 h-2/3  w-1/2 ">
-                            <View className="flex justify-center items-center w-2/3 border rounded-2xl">
-                              <Button
+                          
+                            <View className="flex justify-center items-center w-1/5 border border-modal_blue_board rounded-2xl mr-6">
+                              <Pressable
                                 onPress={() => {
                                   onNext();
                                   setAtividade(atividade);
                                 }}
-                                type="clear"
-                                size="sm"
-                                style={{borderWidth:1, borderColor:'black'}}
+                                style={({ pressed }) => ({
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
+                                  borderRadius: 10,
+                                  height: 20,
+                                  borderWidth: 1,
+                                  borderColor: 'black', 
+                                  backgroundColor: pressed ? '#E5E7EB' : 'transparent',
+                                })}
                               >
-                              </Button>
-                              <Text className=" text-gray_button mb-1">Iniciar</Text>
-
+                                <Text style={{ color: '#6B7280' }}>Iniciar</Text>
+                              </Pressable>
                             </View>
-                          </View>
                         </View>
                       ))}
                     </View>
