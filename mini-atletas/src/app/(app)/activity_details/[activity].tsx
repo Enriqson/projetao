@@ -18,7 +18,7 @@ function Content({ activity }) {
   const activityMetadata = ACTIVITY_METADATA[activity];
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
-  const Image = activityMetadata["Image"];
+  const Image = activityMetadata["image"];
 
   const handlePress = () => {
     // Lógica a ser executada quando o botão for pressionado

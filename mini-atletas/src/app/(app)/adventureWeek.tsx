@@ -1,14 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Atividades from "../components/adventures/modal-atividades-diarias"
+import React from "react";
 import { DiaryActivies } from "@/components/adventures/diaryActivities";
-import { View, Text, Pressable ,TouchableOpacity  } from 'react-native';
+import { View, ScrollView, ImageBackground } from "react-native";
 
 function Page() {
   return (
-    <View className="flex flex-col  items-center bg h-full w-full ">
-      <DiaryActivies />
-    </View>
+    <ImageBackground
+      resizeMode="stretch"
+      imageStyle={{ width: "100%", height: "70%", bottom: -5, top: "auto" }}
+      source={require("../../../assets/background.png")}
+    >
+      <ScrollView>
+        <View className="flex flex-col  items-center bg h-[110vh] w-full ">
+          <DiaryActivies />
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
 }
 

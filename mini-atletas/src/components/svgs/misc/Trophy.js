@@ -1,10 +1,11 @@
 import * as React from "react"
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
-const SvgComponent = (props) => (
+const Trophy = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     width={34}
     height={34}
+    viewBox="0 0 34 34"
     fill="none"
     {...props}
   >
@@ -25,4 +26,4 @@ const SvgComponent = (props) => (
     </Defs>
   </Svg>
 )
-export default SvgComponent
+export default Trophy

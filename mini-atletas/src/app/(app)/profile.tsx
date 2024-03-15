@@ -5,7 +5,7 @@ import SetaDireita from "@/components/svgs/profile/setadireita";
 import { TouchableOpacity } from "react-native";
 import GrupoFutebol from "@/components/svgs/profile/gruposfutebol";
 import GrupoPique from "@/components/svgs/profile/grupopiqueesconde";
-import { default as AchievementSvg } from "@/components/svgs/misc/achievement";
+import Trophy from "@/components/svgs/misc/Trophy";
 import { Link } from "expo-router";
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder";
@@ -19,39 +19,47 @@ function AchievementSection() {
 
       <OffsetBorder>
         <View className="bg-white rounded-[32px] border-black border-[2px] flex-row lg:w-[30vw] h-[81px] w-[90vw] justify-around items-center px-4 py-2">
-          <Link href={{ pathname: "/achievements", params: { tab: 0 }}}>
+          <Link href={{ pathname: "/achievements", params: { tab: 0 } }}>
             <TouchableOpacity>
-              <AchievementSvg
+              <Trophy
                 color_primary={TAILWIND_THEME.colors.light_blue}
                 color_secondary={TAILWIND_THEME.colors.blue}
-              ></AchievementSvg>
+                width={41}
+                height={41}
+              ></Trophy>
             </TouchableOpacity>
           </Link>
 
-          <Link href={{ pathname: "/achievements", params: { tab: 1 }}}>
+          <Link href={{ pathname: "/achievements", params: { tab: 1 } }}>
             <TouchableOpacity>
-              <AchievementSvg
+              <Trophy
                 color_primary={TAILWIND_THEME.colors.light_yellow}
                 color_secondary={TAILWIND_THEME.colors.yellow}
-              ></AchievementSvg>
+                width={41}
+                height={41}
+              ></Trophy>
             </TouchableOpacity>
           </Link>
 
-          <Link href={{ pathname: "/achievements", params: { tab: 2 }}}>
+          <Link href={{ pathname: "/achievements", params: { tab: 2 } }}>
             <TouchableOpacity>
-              <AchievementSvg
+              <Trophy
                 color_primary={TAILWIND_THEME.colors.light_pink}
                 color_secondary={TAILWIND_THEME.colors.pink}
-              ></AchievementSvg>
+                width={41}
+                height={41}
+              ></Trophy>
             </TouchableOpacity>
           </Link>
 
-          <Link href={{ pathname: "/achievements", params: { tab: 3 }}}>
+          <Link href={{ pathname: "/achievements", params: { tab: 3 } }}>
             <TouchableOpacity>
-              <AchievementSvg
+              <Trophy
                 color_primary={TAILWIND_THEME.colors.light_green}
                 color_secondary={TAILWIND_THEME.colors.green}
-              ></AchievementSvg>
+                width={41}
+                height={41}
+              ></Trophy>
             </TouchableOpacity>
           </Link>
         </View>
@@ -124,18 +132,12 @@ const ProfileContent = ({ userName }) => {
   );
 };
 
-
-
 export default function Page() {
   return (
     <View className="flex flex-1">
       <View className="mt-8">
         <ProfileContent userName="Leticia"></ProfileContent>
       </View>
-
-
     </View>
-    
   );
 }
-

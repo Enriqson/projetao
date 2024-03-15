@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import { TAILWIND_THEME } from "@/utils/index";
-import OffsetBorder from "./OffsetBorder";
+import OffsetBorder from "@/components/OffsetBorder";
 import { Link } from "expo-router";
 
 interface BlockProps {

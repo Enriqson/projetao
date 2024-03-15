@@ -4,16 +4,14 @@ import OffsetBorder from "@/components/OffsetBorder";
 import { TAILWIND_THEME } from "@/utils/index";
 import { Link } from "expo-router";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
+import Trophy from "@/components/svgs/misc/Trophy";
 
-function ActivityBlock({
-  ActivitySvg,
-  activityName,
-}) {
-  const activityMetadata = ACTIVITY_METADATA[activityName]
-  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]]
-  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]]
-  const activityAlias = activityMetadata.alias
-  const Trophy = activityMetadata.Trophy
+function ActivityBlock({ ActivitySvg, activityName }) {
+  const activityMetadata = ACTIVITY_METADATA[activityName];
+  const color_primary =
+    TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
+  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
+  const activityAlias = activityMetadata.alias;
 
   const textStyle = {
     color: color_secondary,
@@ -35,7 +33,10 @@ function ActivityBlock({
             </Text>
             <View className="justify-around items-start flex-col text-[14px] font-medium">
               <View>
-                <View className="flex-row justify-between" style={{ marginBottom: 20 }}>
+                <View
+                  className="flex-row justify-between"
+                  style={{ marginBottom: 20 }}
+                >
                   <View className=" pr-5">
                     <Text
                       className="text-[14px] text-left font-medium"
@@ -49,15 +50,24 @@ function ActivityBlock({
                   </View>
                 </View>
               </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text
-                  style={[textStyle, { marginRight: 50 }]}
-                >
-                  Conquistas
-                </Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Text style={{ color: color_secondary }}>{activityMetadata["achievements"]}</Text>
-                  <Trophy color_primary={color_secondary} color_secondary={color_primary} />
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={[textStyle, { marginRight: 50 }]}>Conquistas</Text>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Text style={{ color: color_secondary }}>
+                    {activityMetadata["achievements"]}
+                  </Text>
+                  <Trophy
+                    color_primary={color_secondary}
+                    color_secondary={color_primary}
+                    width={21}
+                    height={21}
+                  />
                 </View>
               </View>
             </View>
