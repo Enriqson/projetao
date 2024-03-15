@@ -19,7 +19,7 @@ function AchievementSection() {
 
       <OffsetBorder>
         <View className="bg-white rounded-[32px] border-black border-[2px] flex-row lg:w-[30vw] h-[81px] w-[90vw] justify-around items-center px-4 py-2">
-          <Link href="/achievements">
+          <Link href={{ pathname: "/achievements", params: { tab: 0 }}}>
             <TouchableOpacity>
               <AchievementSvg
                 color_primary={TAILWIND_THEME.colors.light_blue}
@@ -28,7 +28,7 @@ function AchievementSection() {
             </TouchableOpacity>
           </Link>
 
-          <Link href="/achievements">
+          <Link href={{ pathname: "/achievements", params: { tab: 1 }}}>
             <TouchableOpacity>
               <AchievementSvg
                 color_primary={TAILWIND_THEME.colors.light_yellow}
@@ -37,7 +37,7 @@ function AchievementSection() {
             </TouchableOpacity>
           </Link>
 
-          <Link href="/achievements">
+          <Link href={{ pathname: "/achievements", params: { tab: 2 }}}>
             <TouchableOpacity>
               <AchievementSvg
                 color_primary={TAILWIND_THEME.colors.light_pink}
@@ -46,7 +46,7 @@ function AchievementSection() {
             </TouchableOpacity>
           </Link>
 
-          <Link href="/achievements">
+          <Link href={{ pathname: "/achievements", params: { tab: 3 }}}>
             <TouchableOpacity>
               <AchievementSvg
                 color_primary={TAILWIND_THEME.colors.light_green}
