@@ -2,15 +2,10 @@ import React, { useEffect, useState } from "react";
 import { View, ScrollView, Text } from "react-native";
 import Block from "@/components/Block";
 import Girl from "@/components/svgs/dates/girl";
-import Trophy from "@/components/svgs/dates/trophy";
+import Trophy from "@/components/svgs/misc/Trophy";
 import PlusIcon from "@/components/svgs/dates/plusIcon";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import { TAILWIND_THEME } from "@/utils";
-import Ball from "@/components/svgs/activities/Ball";
-import Bike from "@/components/svgs/activities/Bike";
-import Chess from "@/components/svgs/activities/Chess";
-import Hide from "@/components/svgs/activities/Hide";
-import Rope from "@/components/svgs/activities/Rope";
 
 export default function Page() {
   return (
@@ -32,12 +27,14 @@ function Content() {
             activityName: "soccer",
             profileImage: "girl",
             profileName: "Maria",
+            profileColor:"green",
             time: "30 minutos",
           },
           "12": {
             activityName: "rope_jumping",
             profileImage: "girl",
             profileName: "Leticia",
+            profileColor:"purple",
             time: "10 minutos",
           },
         },
@@ -49,12 +46,14 @@ function Content() {
             activityName: "soccer",
             profileImage: "girl",
             profileName: "Maria",
+            profileColor:"green",
             time: "30 minutos",
           },
           "12": {
             activityName: "hide_and_seek",
             profileImage: "girl",
             profileName: "Leticia",
+            profileColor:"purple",
             time: "3 partidas",
           },
         },
@@ -66,12 +65,14 @@ function Content() {
             activityName: "chess",
             profileImage: "girl",
             profileName: "Maria",
+            profileColor:"green",
             time: "5 partidas",
           },
           "12": {
             activityName: "cycling",
             profileImage: "girl",
             profileName: "Leticia",
+            profileColor:"purple",
             time: "30 minutos",
           },
         },
@@ -135,27 +136,10 @@ function Day({ day, activity, activityTranslations }) {
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
 
-  let ActivitySVG;
-  switch (activity.activityName) {
-    case "soccer":
-      ActivitySVG = Ball;
-      break;
-    case "cycling":
-      ActivitySVG = Bike;
-      break;
-    case "chess":
-      ActivitySVG = Chess;
-      break;
-    case "hide_and_seek":
-      ActivitySVG = Hide;
-      break;
-    case "rope_jumping":
-      ActivitySVG = Rope;
-      break;
-    default:
-      ActivitySVG = null;
-  }
-
+  const ActivitySVG= activityMetadata["image"];
+  const profile_color_primary = TAILWIND_THEME.colors["light_" + activity.profileColor];
+  const profile_color_secondary = TAILWIND_THEME.colors[activity.profileColor];
+  
   return (
     <View className="flex-row space-x-3">
       <View className="mr-[11px]">
@@ -172,8 +156,8 @@ function Day({ day, activity, activityTranslations }) {
               Dia {day}
             </Text>
             <View className="flex-row items-end">
-              <Girl colorSecondary={color_secondary} />
-              <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
+              <Girl colorSecondary={profile_color_secondary} />
+              <Trophy color_primary={profile_color_primary} color_secondary={profile_color_secondary} width={31} height={31}/>
             </View>
           </View>
         </Block>
@@ -199,7 +183,7 @@ function Day({ day, activity, activityTranslations }) {
                 style={{
                   fontSize: 24,
                   fontWeight: "500",
-                  color: color_secondary,
+                  color: profile_color_secondary,
                 }}
               >
                 {activity.profileName}
@@ -214,7 +198,7 @@ function Day({ day, activity, activityTranslations }) {
                 {activity.time}
               </Text>
               <View className="flex-row items-end">
-                <Trophy colorPrimary={color_primary} colorSecondary={color_secondary} />
+                <Trophy color_primary={color_primary} color_secondary={color_secondary} width={31} height={31} />
                 <Text
                   style={{
                     fontSize: 12,

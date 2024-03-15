@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
-import { default as AchievementSvg } from "@/components/svgs/misc/achievement";
+import Trophy from "@/components/svgs/misc/Trophy";
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder";
 import { Link, useLocalSearchParams } from "expo-router";
@@ -81,10 +81,10 @@ function TabNavigationButton({
       >
         <View className={wrapperStyle}>
           <TouchableOpacity onPress={onPress}>
-            <AchievementSvg
+            <Trophy
               color_primary={color_primary}
               color_secondary={color_secondary}
-            ></AchievementSvg>
+            ></Trophy>
           </TouchableOpacity>
         </View>
       </OffsetBorder>

@@ -3,8 +3,9 @@ import Svg, { Rect, Path } from "react-native-svg"
 const Dia3 = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={176}
-    height={189}
+    width={176*0.90}
+    height={189*0.90}
+    viewBox="0 0 176 189"
     fill="none"
     {...props}
   >
