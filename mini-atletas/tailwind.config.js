@@ -17,6 +17,10 @@ module.exports = {
         light_purple: "#CEB0E1",
         pink: "#F203C8",
         light_pink: "#FFB7F2",
+        modal_blue: "#8FBFFA",
+        modal_blue_board: "#2859C5",
+        gray_button: "#545F71",
+        transparent_blue_bg: "#263361",
       },
     },
     future: {
