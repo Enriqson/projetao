@@ -270,7 +270,7 @@ const ProfileContent = ({ userName, isParent, avatarConfig }) => {
                     Perfil pareado
                   </Text>
                   <View className="ml-auto mr-6">
-                    <Link href="/activities">
+                    <Link href="/pairedProfile">
                         <SetaDireita></SetaDireita>
                     </Link>
                   </View>
