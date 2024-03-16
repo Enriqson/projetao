@@ -26,7 +26,7 @@ function Content() {
     const { user } = useAuth();
     const [isParent, setIsParent] = useState(null);
     const [avatarConfig, setAvatarConfig] = useState(null);
-    
+    const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
     
     // whenever the count of achievements per
     // user is implemented on back-end
@@ -49,6 +49,7 @@ function Content() {
           let avatarConfig = JSON.parse(data.avatar_config);
           avatarConfig.shape = "rounded";
           setAvatarConfig(avatarConfig);
+          setIsAvatarLoaded(true);
         }
       }
       async function fetchIsParent() {
@@ -74,6 +75,9 @@ function Content() {
       fetchIsParent();
     }, [user]);
   
+    if(!isAvatarLoaded)
+        return "";
+    
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
             <View className=" w-4/5 lg:w-2/4 self-center h-[120vh] justify-start space-y-5">
@@ -83,8 +87,8 @@ function Content() {
                     flexDirection: "column",
                     flexShrink: 1,
                 }}>
-                    <View style={{ borderColor: TAILWIND_THEME.colors["purple"]}} className="border-[3px] rounded-[32px] bg-white">
-                        <ReactNiceAvatar size={75} style={{ backgroundColor: "transparent" }} {...avatarConfig} />
+                    <View style={{ borderColor: TAILWIND_THEME.colors["purple"]}} className="border-[3px] rounded-[42px] bg-white">
+                        <ReactNiceAvatar size={75} style={{ backgroundColor: "transparent" }} {...{...avatarConfig, shape: "circle"}} />
                     </View>
                     <Text style={{  fontSize: 21, fontWeight: "bold", }}>Leticia</Text>
                     <Block color_secondary="#2859C5" width={280} heigh={250}>
@@ -97,8 +101,8 @@ function Content() {
                     <Block color_primary="#DBBCED" color_secondary="#8928C5" width={331} heigh={157}>
                         <View style={{ flexDirection: "column", justifyContent: "space-around", alignItems: "center" }}>
                             <Text style={{ color: "#8928C5", fontSize: 21, fontWeight: "bold" }}>Campeã</Text>
-                            <View style={{ borderColor: TAILWIND_THEME.colors["purple"]}} className="border-[3px] rounded-[32px] bg-white">
-                                <ReactNiceAvatar size={75} style={{ backgroundColor: "transparent" }} {...avatarConfig} />
+                            <View style={{ borderColor: TAILWIND_THEME.colors["purple"]}} className="border-[3px] rounded-[42px] bg-white">
+                                <ReactNiceAvatar size={75} style={{ backgroundColor: "transparent" }} {...{...avatarConfig, shape: "circle"}} />
                             </View>
                         </View>
                         <View style={{ flexDirection: "column", marginTop: 30, alignItems: "flex-start" }}>
