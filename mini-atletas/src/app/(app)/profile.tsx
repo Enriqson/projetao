@@ -141,47 +141,39 @@ function AchievementSection() {
       <OffsetBorder>
         <View className="bg-white rounded-[32px] border-black border-[2px] flex-row lg:w-[30vw] h-[81px] w-[90vw] justify-around items-center px-4 py-2">
           <Link href={{ pathname: "/achievements", params: { tab: 0 } }}>
-            <TouchableOpacity>
               <Trophy
                 color_primary={TAILWIND_THEME.colors.light_blue}
                 color_secondary={TAILWIND_THEME.colors.blue}
                 width={41}
                 height={41}
               ></Trophy>
-            </TouchableOpacity>
           </Link>
 
           <Link href={{ pathname: "/achievements", params: { tab: 1 } }}>
-            <TouchableOpacity>
               <Trophy
                 color_primary={TAILWIND_THEME.colors.light_yellow}
                 color_secondary={TAILWIND_THEME.colors.yellow}
                 width={41}
                 height={41}
               ></Trophy>
-            </TouchableOpacity>
           </Link>
 
           <Link href={{ pathname: "/achievements", params: { tab: 2 } }}>
-            <TouchableOpacity>
               <Trophy
                 color_primary={TAILWIND_THEME.colors.light_pink}
                 color_secondary={TAILWIND_THEME.colors.pink}
                 width={41}
                 height={41}
               ></Trophy>
-            </TouchableOpacity>
           </Link>
 
           <Link href={{ pathname: "/achievements", params: { tab: 3 } }}>
-            <TouchableOpacity>
               <Trophy
                 color_primary={TAILWIND_THEME.colors.light_green}
                 color_secondary={TAILWIND_THEME.colors.green}
                 width={41}
                 height={41}
               ></Trophy>
-            </TouchableOpacity>
           </Link>
         </View>
       </OffsetBorder>
@@ -198,9 +190,7 @@ function GroupSection() {
             Meus grupos
           </Text>
           <View className="ml-auto mr-6">
-            <TouchableOpacity>
               <SetaDireita></SetaDireita>
-            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -229,18 +219,18 @@ function ActivitySection({ isParent }) {
           </Text>
           <View className="ml-auto mr-6">
             <Link href="/activities">
-              <TouchableOpacity>
                 <SetaDireita></SetaDireita>
-              </TouchableOpacity>
             </Link>
           </View>
         </View>
         <View className="justify-center items-center ">
-          <ActivityBlock activityName="soccer" />
           {isParent ? (
-            undefined
+            <View className="justify-center items-center ">
+              <ActivityBlock activityName="soccer" varWidth = "w-[90vw]" />
+            </View>
           ) : (
             <>
+              <ActivityBlock activityName="soccer"/>
               <ActivityBlock activityName="rope_jumping" />
               <ActivityBlock activityName="cycling" />
               <ActivityBlock activityName="chess" />
@@ -276,8 +266,27 @@ const ProfileContent = ({ userName, isParent, avatarConfig }) => {
               </>
             )}
           </View>
-
           <ActivitySection isParent={isParent} />
+          {isParent ? (
+            <>
+              <View className="my-[10px]">
+                <View className="flex-row ml-[25px]">
+                  <Text className="text-xl text-gray-600 font-semibold flex items-center">
+                    Perfil pareado
+                  </Text>
+                  <View className="ml-auto mr-6">
+                    <Link href="/pairedProfile">
+                        <SetaDireita></SetaDireita>
+                    </Link>
+                  </View>
+                </View>
+              </View>
+              <ProfileChild userName={userName} avatarConfig={avatarConfig} />
+          </>
+          ) : (
+              undefined
+          )}
+
         </View>
       </View>
     </ScrollView>
