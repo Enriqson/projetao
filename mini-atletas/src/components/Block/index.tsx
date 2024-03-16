@@ -12,6 +12,8 @@ interface BlockProps {
   width?: number;
   leftOffset?: number;
   borderRadius?: number;
+  color_primary?: string;
+  color_secondary?: string;
 }
 
 function Block({
@@ -21,10 +23,15 @@ function Block({
   children,
   leftOffset = 10,
   borderRadius = 32,
+  color_primary,
+  color_secondary,
 }: BlockProps) {
-  const activityMetadata = ACTIVITY_METADATA[activityName];
-  const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
-  const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
+  let activityMetadata;
+  if (activityName) {
+    activityMetadata = ACTIVITY_METADATA[activityName];
+    color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
+    color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
+  }
 
   return (
     <Link href={`/`} className="my-5">

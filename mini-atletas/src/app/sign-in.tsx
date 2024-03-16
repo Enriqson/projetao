@@ -40,7 +40,7 @@ export default function () {
     }
   }
   return (
-    <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }}>
+    <KeyboardAvoidingView className="lg:w-1/4  lg:self-center " behavior="height" enabled style={{ flex: 1 }}>
       <Layout>
         <ScrollView
           contentContainerStyle={{
@@ -80,7 +80,7 @@ export default function () {
             <Text>Email</Text>
             <TextInput
               containerStyle={{ marginTop: 15 }}
-              placeholder="Enter your email"
+              placeholder="Digite o email"
               value={email}
               autoCapitalize="none"
               autoCorrect={false}
@@ -88,10 +88,10 @@ export default function () {
               onChangeText={(text) => setEmail(text)}
             />
 
-            <Text style={{ marginTop: 15 }}>Password</Text>
+            <Text style={{ marginTop: 15 }}>Senha</Text>
             <TextInput
               containerStyle={{ marginTop: 15 }}
-              placeholder="Enter your password"
+              placeholder="Digite a senha"
               value={password}
               autoCapitalize="none"
               autoCorrect={false}
@@ -99,7 +99,7 @@ export default function () {
               onChangeText={(text) => setPassword(text)}
             />
             <Button
-              text={loading ? "Loading" : "Continue"}
+              text={loading ? "Loading" : "Continuar"}
               onPress={login}
               style={{
                 marginTop: 20,
@@ -108,7 +108,7 @@ export default function () {
             />
 
             <View className="flex-row items-center mt-[15px] justify-center">
-              <Text size="md">Don't have an account?</Text>
+              <Text size="md">Não tem uma conta?</Text>
               <TouchableOpacity
                 onPress={() => {
                   router.replace("/");
@@ -121,7 +121,7 @@ export default function () {
                     marginLeft: 5,
                   }}
                 >
-                  Register here
+                  Registre-se aqui
                 </Text>
               </TouchableOpacity>
             </View>
@@ -132,7 +132,7 @@ export default function () {
                 }}
               >
                 <Text size="md" fontWeight="bold">
-                  Forget password
+                  Esqueci a senha
                 </Text>
               </TouchableOpacity>
             </View>

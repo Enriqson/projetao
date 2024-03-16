@@ -8,7 +8,6 @@ import Trophy from "@/components/svgs/misc/Trophy";
 import { Link } from "expo-router";
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder/index";
-import OffsetProfile from "@/components/OffsetBorder/OffsetProfile";
 import Trofeu from "@/components/svgs/profile/Trofeu";
 import Avatar from "@zamplyy/react-native-nice-avatar";
 import ActivityBlock from "@/components/ActivityBlock";
@@ -51,53 +50,7 @@ function ProfileParent() {
   );
 }
 
-function MyDates({ userName, dia }) {
-  const { user } = useAuth();
-  const [avatarConfig, setAvatarConfig] = useState(null);
-  const [ChildConfig, setChildConfig] = useState(null);
-
-  useEffect(() => {
-    async function fetchAvatar() {
-      let { data, error } = await supabase
-        .from("avatar_config")
-        .select("avatar_config")
-        .eq("user_id", user.id)
-        .single();
-
-      if (error) {
-        console.error("Error fetching avatar:", error.message);
-        return;
-      }
-
-      if (data) {
-        const avatarConfig = JSON.parse(data.avatar_config);
-        setAvatarConfig(avatarConfig);
-      }
-    }
-
-    async function fetchChild() {
-      let { data, error } = await supabase
-        .from("parent_child")
-        .select()
-
-      if (error) {
-        console.error("Error fetching Child:", error.message);
-        return;
-      }
-
-      if (data) {
-        //const is_parent = JSON.parse(data.child_id);
-        setChildConfig(ChildConfig);
-        console.log("CHIIIILD CONFIG")
-        console.log(ChildConfig);
-      }
-    }
-
-    fetchChild();
-    fetchAvatar();
-  }, [user]);
-  
-  
+function MyDates({ userName, dia, avatarConfig }) {
   return (
     <View className="mb-[10px]">
       <View className="my-[10px] ml-[25px]">
@@ -142,38 +95,19 @@ function MyDates({ userName, dia }) {
   );
 }
 
-function ProfileChield({ userName }) {
-  const { user } = useAuth();
-  const [avatarConfig, setAvatarConfig] = useState(null);
-
-  useEffect(() => {
-    async function fetchAvatar() {
-      let { data, error } = await supabase
-        .from("avatar_config")
-        .select("avatar_config")
-        .eq("user_id", user.id)
-        .single();
-
-      if (error) {
-        console.error("Error fetching avatar:", error.message);
-        return;
-      }
-
-      if (data) {
-        const avatarConfig = JSON.parse(data.avatar_config);
-        setAvatarConfig(avatarConfig);
-      }
-    }
-
-    fetchAvatar();
-  }, [user]);
-
-  console.log(avatarConfig)
+function ProfileChild({ userName, avatarConfig }) {
   return (
-    <OffsetProfile>
+    <OffsetBorder
+      color_primary={TAILWIND_THEME.colors.light_purple}
+      color_secondary={TAILWIND_THEME.colors.purple}
+    >
       <View className="bg bg-white h-[160px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row">
         <View className="-mr-8 border-purple rounded-[50px] border-[6px] p-[1px]">
-          <Avatar size={125} style={{backgroundColor:"transparent"}} {...avatarConfig}></Avatar>
+          <Avatar
+            size={125}
+            style={{ backgroundColor: "transparent" }}
+            {...avatarConfig}
+          ></Avatar>
         </View>
 
         <View>
@@ -186,7 +120,7 @@ function ProfileChield({ userName }) {
           <Text className="text-sm color-purple">Corredora</Text>
         </View>
       </View>
-    </OffsetProfile>
+    </OffsetBorder>
   );
 }
 
@@ -280,7 +214,7 @@ function GroupSection() {
   );
 }
 
-function ActivitySection() {
+function ActivitySection({ isParent }) {
   return (
     <>
       <View className="my-[10px]">
@@ -296,42 +230,49 @@ function ActivitySection() {
             </Link>
           </View>
         </View>
-        <View className="justify-center items-center">
+        <View className="justify-center items-center ">
           <ActivityBlock activityName="soccer" />
-          <ActivityBlock activityName="rope_jumping" />
-          <ActivityBlock activityName="cycling" />
-          <ActivityBlock activityName="chess" />
-          <ActivityBlock activityName="hide_and_seek" />
+          {isParent ? (
+            undefined
+          ) : (
+            <>
+              <ActivityBlock activityName="rope_jumping" />
+              <ActivityBlock activityName="cycling" />
+              <ActivityBlock activityName="chess" />
+              <ActivityBlock activityName="hide_and_seek" />
+            </>
+          )}
         </View>
       </View>
     </>
   );
 }
 
-const ProfileContent = ({ userName, isParent }) => {
+const ProfileContent = ({ userName, isParent, avatarConfig }) => {
   return (
     <ScrollView>
       <View className="flex flex-col justify-start items-center h-[200vh]">
         <View>
           <View className="mb-3">
             {isParent ? (
-              <ProfileParent />
+              <>
+                <ProfileParent />
+                <MyDates
+                  userName={userName}
+                  avatarConfig={avatarConfig}
+                  dia={27}
+                />
+              </>
             ) : (
-              <ProfileChield userName={userName} />
+              <>
+                <ProfileChild userName={userName} avatarConfig={avatarConfig} />
+                <AchievementSection></AchievementSection>
+                <GroupSection></GroupSection>
+              </>
             )}
           </View>
 
-          {isParent ? (
-            <MyDates userName={userName} dia={27} />
-          ) : (
-            <AchievementSection></AchievementSection>
-          )}
-
-          <View className="my-[5px] flex justify-between">
-            {isParent ? <Text></Text> : <GroupSection></GroupSection>}
-          </View>
-
-          <ActivitySection />
+          <ActivitySection isParent={isParent} />
         </View>
       </View>
     </ScrollView>
@@ -340,14 +281,15 @@ const ProfileContent = ({ userName, isParent }) => {
 
 export default function Page() {
   const { user } = useAuth();
-  const [is_parent, setis_parent] = useState(null);
+  const [isParent, setIsParent] = useState(null);
+  const [avatarConfig, setAvatarConfig] = useState(null);
 
   useEffect(() => {
-    async function fetchUser() {
+    async function fetchAvatar(avatarUserId) {
       let { data, error } = await supabase
-        .from("users")
-        .select("is_parent")
-        .eq("id", user.id)
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", avatarUserId)
         .single();
 
       if (error) {
@@ -356,18 +298,40 @@ export default function Page() {
       }
 
       if (data) {
-        const is_parent = JSON.parse(data.is_parent);
-        setis_parent(is_parent);
+        const avatarConfig = JSON.parse(data.avatar_config);
+        setAvatarConfig(avatarConfig);
+      }
+    }
+    async function fetchIsParent() {
+      let { data, error } = await supabase
+        .from("parent_child")
+        .select("child_id")
+        .eq("parent_id", user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Error fetching Child:", error.message);
+        return;
+      }
+
+      if (data?.child_id) {
+        setIsParent(true);
+        fetchAvatar(data.child_id);
+      } else {
+        fetchAvatar(user.id);
       }
     }
 
-    fetchUser();
+    fetchIsParent();
   }, [user]);
 
-  console.log(is_parent)
   return (
     <View className="flex flex-1 mt-8">
-      <ProfileContent userName="Leticia" isParent={true}></ProfileContent>
+      <ProfileContent
+        userName="Leticia"
+        isParent={isParent}
+        avatarConfig={avatarConfig}
+      ></ProfileContent>
     </View>
   );
 }
