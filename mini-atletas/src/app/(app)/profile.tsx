@@ -16,6 +16,7 @@ import Lt from "@/components/svgs/profile/Lt";
 import Gt from "@/components/svgs/profile/Gt";
 import { useAuth } from "@/providers/AuthProvider";
 import { supabase } from "@/config/supabase";
+import { Image } from "react-native";
 
 function ProfileParent() {
   return (
@@ -40,9 +41,11 @@ function ProfileParent() {
 
         <View>
           <View className="bg bg-white h-[130px] w-[140px] rounded-[10px] border-black border-[2px] mt-3 ml-5">
-            <Text className="flex justify-center items-center h-screen text-xs">
-              QR Code
-            </Text>
+            <Image
+              resizeMode="stretch"
+              style={{ width: "100%", height: "100%" }}
+              source={require("../../../assets/qr-parent.png")}
+            />
           </View>
         </View>
       </View>
