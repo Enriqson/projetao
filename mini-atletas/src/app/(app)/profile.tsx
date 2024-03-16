@@ -219,11 +219,13 @@ function ActivitySection({ isParent }) {
           </View>
         </View>
         <View className="justify-center items-center ">
-          <ActivityBlock activityName="soccer" varWidth = "w-[90vw]" />
           {isParent ? (
-            undefined
+            <View className="justify-center items-center ">
+              <ActivityBlock activityName="soccer" varWidth = "w-[90vw]" />
+            </View>
           ) : (
             <>
+              <ActivityBlock activityName="soccer"/>
               <ActivityBlock activityName="rope_jumping" />
               <ActivityBlock activityName="cycling" />
               <ActivityBlock activityName="chess" />
@@ -262,6 +264,18 @@ const ProfileContent = ({ userName, isParent, avatarConfig }) => {
           <ActivitySection isParent={isParent} />
           {isParent ? (
             <>
+              <View className="my-[10px]">
+                <View className="flex-row ml-[25px]">
+                  <Text className="text-xl text-gray-600 font-semibold flex items-center">
+                    Perfil pareado
+                  </Text>
+                  <View className="ml-auto mr-6">
+                    <Link href="/activities">
+                        <SetaDireita></SetaDireita>
+                    </Link>
+                  </View>
+                </View>
+              </View>
               <ProfileChild userName={userName} avatarConfig={avatarConfig} />
           </>
           ) : (
