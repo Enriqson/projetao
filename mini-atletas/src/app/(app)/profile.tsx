@@ -1,5 +1,4 @@
-import React from "react";
-import Girl2 from "@/components/svgs/profile/girl2";
+import React, { useState, useEffect } from "react";
 import { Text, View, ScrollView } from "react-native";
 import SetaDireita from "@/components/svgs/profile/setadireita";
 import { TouchableOpacity } from "react-native";
@@ -8,13 +7,196 @@ import GrupoPique from "@/components/svgs/profile/grupopiqueesconde";
 import Trophy from "@/components/svgs/misc/Trophy";
 import { Link } from "expo-router";
 import { TAILWIND_THEME } from "@/utils/index";
-import OffsetBorder from "@/components/OffsetBorder";
+import OffsetBorder from "@/components/OffsetBorder/index";
+import OffsetProfile from "@/components/OffsetBorder/OffsetProfile";
+import Trofeu from "@/components/svgs/profile/Trofeu";
+import Avatar from "@zamplyy/react-native-nice-avatar";
+import ActivityBlock from "@/components/ActivityBlock";
+import Esporte from "@/components/svgs/profile/Esporte";
+import Lt from "@/components/svgs/profile/Lt";
+import Gt from "@/components/svgs/profile/Gt";
+import { useAuth } from "@/providers/AuthProvider";
+import { supabase } from "@/config/supabase";
+
+function ProfileParent() {
+  return (
+    <OffsetBorder>
+      <View className="bg bg-white h-[200px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row">
+        <View className="-mr-8">
+          <Text className="text-2xl font-bold opacity-65 mb-4">
+            Parear Perfil
+          </Text>
+          <View className="bg bg-white h-[40px] rounded-[10px] border-black border-[2px] mb-4">
+            <Text className="flex justify-center items-center h-screen">
+              enviar sms
+            </Text>
+          </View>
+
+          <View className="bg bg-white h-[40px] rounded-[10px] border-black border-[2px] ">
+            <Text className="flex justify-center items-center h-screen">
+              enviar por Email
+            </Text>
+          </View>
+        </View>
+
+        <View>
+          <View className="bg bg-white h-[130px] w-[140px] rounded-[10px] border-black border-[2px] mt-3 ml-5">
+            <Text className="flex justify-center items-center h-screen text-xs">
+              QR Code
+            </Text>
+          </View>
+        </View>
+      </View>
+    </OffsetBorder>
+  );
+}
+
+function MyDates({ userName, dia }) {
+  const { user } = useAuth();
+  const [avatarConfig, setAvatarConfig] = useState(null);
+  const [ChildConfig, setChildConfig] = useState(null);
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      let { data, error } = await supabase
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const avatarConfig = JSON.parse(data.avatar_config);
+        setAvatarConfig(avatarConfig);
+      }
+    }
+
+    async function fetchChild() {
+      let { data, error } = await supabase
+        .from("parent_child")
+        .select()
+
+      if (error) {
+        console.error("Error fetching Child:", error.message);
+        return;
+      }
+
+      if (data) {
+        //const is_parent = JSON.parse(data.child_id);
+        setChildConfig(ChildConfig);
+        console.log("CHIIIILD CONFIG")
+        console.log(ChildConfig);
+      }
+    }
+
+    fetchChild();
+    fetchAvatar();
+  }, [user]);
+  
+  
+  return (
+    <View className="mb-[10px]">
+      <View className="my-[10px] ml-[25px]">
+        <Text className="text-xl text-gray-600 font-semibold">
+          Minhas Datas
+        </Text>
+      </View>
+      <OffsetBorder>
+        <View className="bg bg-white h-[200px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2">
+          <View className="flex-row">
+            <View className="mt-2">
+              <Lt></Lt>
+            </View>
+            <Text className="text-2xl font-bold opacity-60">Março</Text>
+            <View className="mt-2 ml-2">
+              <Gt></Gt>
+            </View>
+          </View>
+
+          <View className="flex-row mb-3">
+            <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[100px] justify-around items-center px-4 py-2 flex-col mr-1">
+              <View>
+                <Esporte></Esporte>
+              </View>
+              <Text className="text-xl font-bold opacity-60">Futebol</Text>
+            </View>
+            <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[250px] justify-around items-center px-4 py-2 flex-row ml-2">
+              <Avatar size={75} {...avatarConfig}></Avatar>
+              <View className="flew-col">
+                <Text className="font-bold text-xl color-purple">
+                  {userName}
+                </Text>
+                <Text className="text-sm font-semibold opacity-60">
+                  Dia {dia}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </OffsetBorder>
+    </View>
+  );
+}
+
+function ProfileChield({ userName }) {
+  const { user } = useAuth();
+  const [avatarConfig, setAvatarConfig] = useState(null);
+
+  useEffect(() => {
+    async function fetchAvatar() {
+      let { data, error } = await supabase
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const avatarConfig = JSON.parse(data.avatar_config);
+        setAvatarConfig(avatarConfig);
+      }
+    }
+
+    fetchAvatar();
+  }, [user]);
+
+  console.log(avatarConfig)
+  return (
+    <OffsetProfile>
+      <View className="bg bg-white h-[160px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row">
+        <View className="-mr-8 border-purple rounded-[50px] border-[6px] p-[1px]">
+          <Avatar size={125} style={{backgroundColor:"transparent"}} {...avatarConfig}></Avatar>
+        </View>
+
+        <View>
+          <Text className="font-bold text-xl color-purple">{userName}</Text>
+          <Text className="text-sm color-purple">Futebol</Text>
+          <View className="flex flex-row items-end">
+            <Trofeu></Trofeu>
+            <Text className="text-sm color-purple">5x</Text>
+          </View>
+          <Text className="text-sm color-purple">Corredora</Text>
+        </View>
+      </View>
+    </OffsetProfile>
+  );
+}
 
 function AchievementSection() {
   return (
     <View className="mb-[10px]">
       <View className="my-[10px] ml-[25px]">
-        <Text className="text-xl text-gray-400 ">Minhas conquistas</Text>
+        <Text className="text-xl text-gray-600 font-semibold">
+          Minhas conquistas
+        </Text>
       </View>
 
       <OffsetBorder>
@@ -72,21 +254,27 @@ function GroupSection() {
   return (
     <>
       <View className="my-[10px] ml-[25px]">
-        <Text className="text-xl text-gray-400 flex items-center">
-          Meu grupos
-          <View className="absolute right-0">
+        <View className="flex-row items-center">
+          <Text className="text-xl text-gray-600 font-semibold">
+            Meus grupos
+          </Text>
+          <View className="ml-auto mr-6">
             <TouchableOpacity>
               <SetaDireita></SetaDireita>
             </TouchableOpacity>
           </View>
-        </Text>
+        </View>
       </View>
 
       <View className="mb-[10px]">
-        <Text className="flex left-2 items-center">
-          <GrupoFutebol></GrupoFutebol>
-          <GrupoPique className="absolute left-[175px]"></GrupoPique>
-        </Text>
+        <View className="flex-row left-2 items-start">
+          <View>
+            <GrupoFutebol />
+          </View>
+          <View>
+            <GrupoPique />
+          </View>
+        </View>
       </View>
     </>
   );
@@ -95,37 +283,55 @@ function GroupSection() {
 function ActivitySection() {
   return (
     <>
-      <View className="mb-[10px]">
-        <Text className="text-lg text-gray-500 md:text-xl dark:text-gray-400 flex items-center">
-          Minhas atividades
-          <View className="ml-auto">
+      <View className="my-[10px]">
+        <View className="flex-row ml-[25px]">
+          <Text className="text-xl text-gray-600 font-semibold flex items-center">
+            Minhas atividades
+          </Text>
+          <View className="ml-auto mr-6">
             <Link href="/activities">
               <TouchableOpacity>
                 <SetaDireita></SetaDireita>
               </TouchableOpacity>
             </Link>
           </View>
-        </Text>
+        </View>
+        <View className="justify-center items-center">
+          <ActivityBlock activityName="soccer" />
+          <ActivityBlock activityName="rope_jumping" />
+          <ActivityBlock activityName="cycling" />
+          <ActivityBlock activityName="chess" />
+          <ActivityBlock activityName="hide_and_seek" />
+        </View>
       </View>
     </>
   );
 }
 
-const ProfileContent = ({ userName }) => {
+const ProfileContent = ({ userName, isParent }) => {
   return (
-    <ScrollView className="">
-      <View className="flex flex-col justify-start items-center h-[120vh]">
+    <ScrollView>
+      <View className="flex flex-col justify-start items-center h-[200vh]">
         <View>
-          <View>
-            <Girl2></Girl2>
+          <View className="mb-3">
+            {isParent ? (
+              <ProfileParent />
+            ) : (
+              <ProfileChield userName={userName} />
+            )}
           </View>
 
-          <AchievementSection></AchievementSection>
+          {isParent ? (
+            <MyDates userName={userName} dia={27} />
+          ) : (
+            <AchievementSection></AchievementSection>
+          )}
 
           <View className="my-[5px] flex justify-between">
-            <GroupSection></GroupSection>
-            <ActivitySection></ActivitySection>
+            {isParent ? <Text></Text> : <GroupSection></GroupSection>}
           </View>
+
+          <ActivitySection />
         </View>
       </View>
     </ScrollView>
@@ -133,11 +339,35 @@ const ProfileContent = ({ userName }) => {
 };
 
 export default function Page() {
+  const { user } = useAuth();
+  const [is_parent, setis_parent] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      let { data, error } = await supabase
+        .from("users")
+        .select("is_parent")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        const is_parent = JSON.parse(data.is_parent);
+        setis_parent(is_parent);
+      }
+    }
+
+    fetchUser();
+  }, [user]);
+
+  console.log(is_parent)
   return (
-    <View className="flex flex-1">
-      <View className="mt-8">
-        <ProfileContent userName="Leticia"></ProfileContent>
-      </View>
+    <View className="flex flex-1 mt-8">
+      <ProfileContent userName="Leticia" isParent={true}></ProfileContent>
     </View>
   );
 }
