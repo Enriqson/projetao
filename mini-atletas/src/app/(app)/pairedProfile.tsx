@@ -45,7 +45,7 @@ function Content() {
                         <View style={{ flexDirection: "column", marginTop: 30, alignItems: "flex-start" }}>
                             <Text style={{ color: "#8928C5", marginBottom: 20 }}>5 Atividades</Text>
                             <View style={{ flexDirection: "row" }}>
-                                <Trophy colorSecondary={"#8928C5"} colorPrimary={"#DBBCED"} ></Trophy>
+                                <Trophy color_secondary={"#8928C5"} color_primary={"#DBBCED"} ></Trophy>
                                 <Text style={{ color: "#8928C5", marginTop: 5, marginLeft: 10 }}>17 Troféus</Text>
                             </View>
                             <View style={{ flexDirection: "row" }}>
