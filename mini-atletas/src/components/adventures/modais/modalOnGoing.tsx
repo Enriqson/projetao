@@ -31,11 +31,11 @@ export const ModalOnGoing = ({
   }
   return (
     <Modal animationType="fade" transparent={true} visible={stateModal}>
-      <View className="w-full h-[5.5rem]"/>
-      <View className="flex justify-top items-center h-full w-full ">
+      <View className="w-full h-[4.0rem]"/>
+      <View className="flex justify-top items-center h-full w-full  ">
         
-        <View className='absolute justify-end h-[6%]  w-5/6  bg bg-modal_blue_board mt-2  border-solid border-modal_blue_board border-2  rounded-[2rem] z-0 '/>
-        <View className='relative  h-[6%] w-5/6  bg   bg-white border-solid  border-2  rounded-[2rem] z-1'>
+        <View className='absolute justify-end h-[6.9%] mt-8 w-5/6  bg bg-modal_blue_board  border-solid border-modal_blue_board border-2  rounded-[2rem] z-0 '/>
+        <View className='relative  h-[7.7%] w-5/6  bg  mt-6 bg-white border-solid  border-2  rounded-[2rem] z-1'>
           <View className='flex flex-row items-center h-full justify-between pl-2'>
               <Text>Atividades diárias</Text>
               <View className="pr-3">
@@ -51,11 +51,12 @@ export const ModalOnGoing = ({
                     backgroundColor: pressed ? '#E5E7EB' : 'transparent',
                   })}
                 >
-                  {stateDiaryActivities ? <SampleIcon/> : <HiddeIcon/>}
+                  {stateModal ? <SampleIcon/> : <HiddeIcon/>}
                 </Pressable>
               </View>
           </View>
         </View>
+
         <View className="flex  pt-8  h-full w-full bg relative">
           <View className="flex items-center w-full h-[30%]">
             <View className="mr-6 mt-[10px] h-full w-[80%] border-2 border-solid border-modal_blue_board bg bg-modal_blue rounded-3xl"/>
