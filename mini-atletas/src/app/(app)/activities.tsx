@@ -30,23 +30,18 @@ function Content() {
         >
           <ActivityBlock
             activityName="soccer"
-            ActivitySvg={Ball}
           />
           <ActivityBlock
             activityName="rope_jumping"
-            ActivitySvg={Rope}
           />
           <ActivityBlock
             activityName="cycling"
-            ActivitySvg={Bike}
           />
           <ActivityBlock
             activityName="chess"
-            ActivitySvg={Chess}
           />
           <ActivityBlock
             activityName="hide_and_seek"
-            ActivitySvg={Hide}
           />
         </View>
       </View>
