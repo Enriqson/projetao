@@ -6,7 +6,7 @@ import { Link } from "expo-router";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import Trophy from "@/components/svgs/misc/Trophy";
 
-function ActivityBlock({ activityName }) {
+function ActivityBlock({ activityName, varWidth = "w-[80vw]" }) {
   const activityMetadata = ACTIVITY_METADATA[activityName];
   const color_primary =
     TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
@@ -23,7 +23,7 @@ function ActivityBlock({ activityName }) {
         color_primary={color_primary}
         color_secondary={color_secondary}
       >
-        <View className="bg-white rounded-[32px] border-black border-[2px] flex-row lg:h-[12vh] lg:w-[30vw] h-[15vh] w-[80vw] justify-around px-4 py-5">
+        <View className={"bg-white rounded-[32px] border-black border-[2px] flex-row lg:h-[12vh] lg:w-[30vw] h-[15vh] justify-around px-4 py-50 " + varWidth}>
           <Image />
           <View className="flex-col pl-2">
             <Text
