@@ -21,58 +21,58 @@ function Content() {
   useEffect(() => {
     const mockData = [
       {
-        name: "Abril",
+        name: "Janeiro",
         dates: {
           "1": {
             activityName: "soccer",
             profileImage: "girl",
-            profileName: "Maria",
-            profileColor:"green",
+            profileName: "Leticia",
+            profileColor: "purple",
             time: "30 minutos",
           },
           "12": {
             activityName: "rope_jumping",
             profileImage: "girl",
             profileName: "Leticia",
-            profileColor:"purple",
+            profileColor: "purple",
             time: "10 minutos",
           },
         },
       },
       {
-        name: "Maio",
+        name: "Fevereiro",
         dates: {
-          "1": {
+          "10": {
             activityName: "soccer",
             profileImage: "girl",
-            profileName: "Maria",
-            profileColor:"green",
+            profileName: "Leticia",
+            profileColor: "purple",
             time: "30 minutos",
           },
-          "12": {
+          "19": {
             activityName: "hide_and_seek",
             profileImage: "girl",
             profileName: "Leticia",
-            profileColor:"purple",
+            profileColor: "purple",
             time: "3 partidas",
           },
         },
       },
       {
-        name: "Junho",
+        name: "Março",
         dates: {
-          "1": {
+          "7": {
             activityName: "chess",
             profileImage: "girl",
-            profileName: "Maria",
-            profileColor:"green",
+            profileName: "Leticia",
+            profileColor: "purple",
             time: "5 partidas",
           },
-          "12": {
+          "22": {
             activityName: "cycling",
             profileImage: "girl",
             profileName: "Leticia",
-            profileColor:"purple",
+            profileColor: "purple",
             time: "30 minutos",
           },
         },
@@ -92,12 +92,12 @@ function Content() {
 
   return (
     <ScrollView>
-      <View className="w-4/5 lg:w-2/4 self-center h-[190vh] justify-start items-center">
+      <View className="w-4/5 lg:w-2/4 self-center h-[190vh] justify-start items-center pointer-events-none">
         {months.map((month, index) => (
           <Month key={index} month={month} activityTranslations={activityTranslations} />
         ))}
         <View>
-          <Block
+          {/* <Block
             activityName="soccer"
             heigh={67}
             width={63}
@@ -105,7 +105,7 @@ function Content() {
             borderRadius={20}
           >
             <PlusIcon />
-          </Block>
+          </Block> */}
         </View>
       </View>
     </ScrollView>
@@ -136,10 +136,10 @@ function Day({ day, activity, activityTranslations }) {
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
 
-  const ActivitySVG= activityMetadata["image"];
+  const ActivitySVG = activityMetadata["image"];
   const profile_color_primary = TAILWIND_THEME.colors["light_" + activity.profileColor];
   const profile_color_secondary = TAILWIND_THEME.colors[activity.profileColor];
-  
+
   return (
     <View className="flex-row space-x-3">
       <View className="mr-[11px]">
@@ -157,7 +157,7 @@ function Day({ day, activity, activityTranslations }) {
             </Text>
             <View className="flex-row items-end">
               <Girl colorSecondary={profile_color_secondary} />
-              <Trophy color_primary={profile_color_primary} color_secondary={profile_color_secondary} width={31} height={31}/>
+              <Trophy color_primary={profile_color_primary} color_secondary={profile_color_secondary} width={31} height={31} />
             </View>
           </View>
         </Block>
