@@ -3,8 +3,9 @@ import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 const HappySvg = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={52}
-    height={52}
+    width={42}
+    height={42}
+    viewBox="0 0 52 52"
     fill="none"
     {...props}
   >

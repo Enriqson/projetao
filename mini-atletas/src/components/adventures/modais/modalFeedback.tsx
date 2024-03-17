@@ -7,7 +7,7 @@ import HappySvg from "@/components/svgs/feedback/Happy";
 import ExcitedSvg from "@/components/svgs/feedback/Excited";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
-
+import { TAILWIND_THEME } from "@/utils";
 export const ModalFeedback = ({
   stateModal,
   onClose,
@@ -21,6 +21,16 @@ export const ModalFeedback = ({
   atividade: string;
   stateDiaryActivities: boolean;
 }) => {
+  function getColor() {
+    if (atividade === "Futebol") {
+      return { color1: TAILWIND_THEME.colors["light_" + "blue"], color2: TAILWIND_THEME.colors.blue }
+    } else if (atividade === "Xadrez") {
+      return { color1: TAILWIND_THEME.colors["light_" + "green"], color2: TAILWIND_THEME.colors.green }
+    } else {
+      return { color1: TAILWIND_THEME.colors["light_" + "pink"], color2: TAILWIND_THEME.colors.pink }
+    }
+  }
+  const { color1, color2 } = getColor()
   return (
     <Modal animationType="fade" transparent={true} visible={stateModal}>
       <View className="w-full h-[4.0rem]" />
@@ -50,27 +60,27 @@ export const ModalFeedback = ({
 
         <View className="flex  pt-8  h-full w-full bg relative">
           <View className="flex items-center w-full h-[30%]">
-            <View className=" mt-[10px] h-[80%] w-[80%] border-2 border-solid border-modal_blue_board bg bg-modal_blue rounded-3xl" />
+            <View className=" mt-[10px] h-[80%] w-[80%] border-2 border-solid  rounded-3xl" style={{ backgroundColor: color1, borderColor: color2 }} />
             <View className=" h-[80%] w-[80%] border-2 border-solid bg bg-white rounded-3xl z-50 absolute">
               <View className="flex items-center justify-center h-full w-full">
                 <View className="flex items-center w-full h-[90%]">
                   <Text className="text-3xl ">O quanto voce gostou?</Text>
                   <View className="flex w-full  h-full items-center mt-6">
-                    <View className="flex flex-row ">
+                    <View className="flex flex-row">
                       <View>
-                        <TerrifiedSvg></TerrifiedSvg>
+                        <TerrifiedSvg color_primary={color1} color_secondary={color2}></TerrifiedSvg>
                       </View>
                       <View>
-                        <SadSvg></SadSvg>
+                        <SadSvg color_primary={color1} color_secondary={color2}></SadSvg>
                       </View>
                       <View>
-                        <NeutralSvg></NeutralSvg>
+                        <NeutralSvg color_primary={color1} color_secondary={color2}></NeutralSvg>
                       </View>
                       <View>
-                        <HappySvg></HappySvg>
+                        <HappySvg color_primary={color1} color_secondary={color2}></HappySvg>
                       </View>
                       <View>
-                        <ExcitedSvg></ExcitedSvg>
+                        <ExcitedSvg color_primary={color1} color_secondary={color2}></ExcitedSvg>
                       </View>
                     </View>
                     <View className="flex items-center justify-center w-full h-1/3">
