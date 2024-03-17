@@ -6,7 +6,6 @@ import Rope from "@/components/svgs/activities/Rope";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
 import { TAILWIND_THEME } from "@/utils";
-import Trophy from "@/components/svgs/misc/Trophy";
 export const ModalStart = ({
     stateModal,
     onClose,
@@ -26,7 +25,7 @@ export const ModalStart = ({
         } else if (atividade === "Xadrez") {
             return { componente: <Chess />, color: TAILWIND_THEME.colors.green, colorBorder: TAILWIND_THEME.colors.green }
         } else {
-            return { componente: <Rope />, color: TAILWIND_THEME.colors.yellow, colorBorder: TAILWIND_THEME.colors.yellow }
+            return { componente: <Rope />, color: TAILWIND_THEME.colors.pink, colorBorder: TAILWIND_THEME.colors.pink }
         }
     }
     const { componente, color, colorBorder } = renderizarImagem()
@@ -68,6 +67,7 @@ export const ModalStart = ({
                                     <View className=' h-1/3'>
                                         {componente}
                                     </View>
+                                    <Text>Vamos começar?</Text>
                                     <View className="relative h-1/3  w-full flex">
                                         <View className=" flex items-center h-full justify-end  pb-3 w-full -z-20">
                                             <View className=" flex justify-center items-center h-[60%] w-3/5 border-b border-l border-r border-modal_blue_board rounded-3xl  " />
@@ -104,4 +104,4 @@ export const ModalStart = ({
             </View>
         </Modal>
     );
-};
+}; 
