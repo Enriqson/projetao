@@ -3,6 +3,7 @@ import React from "react";
 import Chess from "@/components/svgs/activities/Chess";
 import Rope from "@/components/svgs/activities/Rope";
 import Ball from "@/components/svgs/activities/Ball";
+import { TAILWIND_THEME } from "@/utils";
 import ProgressBar from "../../svgs/adventureWeek/progressBar";
 import HiddeIcon from "@/components/svgs/adventureWeek/hidde";
 import SampleIcon from "@/components/svgs/adventureWeek/sample";
@@ -23,13 +24,14 @@ export const ModalOnGoing = ({
 }) => {
   function renderizarImagem() {
     if (atividade === "Futebol") {
-      return <Ball></Ball>;
+      return { componente: <Ball />, color: TAILWIND_THEME.colors["light_" + "blue"], colorBorder: TAILWIND_THEME.colors.blue }
     } else if (atividade === "Xadrez") {
-      return <Chess></Chess>;
+      return { componente: <Chess />, color: TAILWIND_THEME.colors["light_" + "green"], colorBorder: TAILWIND_THEME.colors.green }
     } else {
-      return <Rope></Rope>;
+      return { componente: <Rope />, color: TAILWIND_THEME.colors["light_" + "pink"], colorBorder: TAILWIND_THEME.colors.pink }
     }
   }
+  const { componente, color, colorBorder } = renderizarImagem()
   return (
     <Modal animationType="fade" transparent={true} visible={stateModal}>
       <View className="w-full h-[4.0rem]" />
@@ -59,7 +61,7 @@ export const ModalOnGoing = ({
 
         <View className="flex  pt-8  h-full w-full bg relative">
           <View className="flex items-center w-full h-[40%]">
-            <View className=" mt-[10px] h-full w-[80%] border-2 border-solid border-modal_blue_board bg bg-modal_blue rounded-3xl" />
+            <View className=" mt-[10px] h-full w-[80%] border-2 border-solid  rounded-3xl" style={{ backgroundColor: color, borderColor: colorBorder }} />
             <View className=" h-full w-[80%] border-2 border-solid bg bg-white rounded-3xl z-50 absolute">
               <View className="flex items-center h-full w-full">
                 <View className="flex items-center w-full h-full">
@@ -68,10 +70,10 @@ export const ModalOnGoing = ({
                   </View>
 
                   <View className="w-full h-1/5 flex items-center pt-2">
-                    <Text className=" text-sm">voce está jogando</Text>
+                    <Text className=" text-sm " style={{ marginBottom: 5 }}>Você está jogando</Text>
                     <LinearProgress
                       animation={false}
-                      color="#2859C5"
+                      color={colorBorder}
                       value={0.3}
                       style={{
                         height: "45%",
@@ -79,13 +81,13 @@ export const ModalOnGoing = ({
                         borderWidth: 3,
                         borderRadius: 10,
                         backgroundColor: "rgba(0, 0, 0, 0)",
-                        borderColor: "#8FBFFA",
+                        borderColor: color,
                       }}
                     />
                   </View>
 
                   <View className="w-full flex items-center justify-center h-1/3 pt-6">
-                    {renderizarImagem()}
+                    {componente}
                   </View>
 
                   <View className="flex flex-row items-end justify-between h-[30%] w-5/6 mb-2 pb-4">
