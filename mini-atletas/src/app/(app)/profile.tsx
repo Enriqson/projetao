@@ -16,6 +16,7 @@ import Lt from "@/components/svgs/profile/Lt";
 import Gt from "@/components/svgs/profile/Gt";
 import { useAuth } from "@/providers/AuthProvider";
 import { supabase } from "@/config/supabase";
+import { Image } from "react-native";
 
 function ProfileParent() {
   return (
@@ -40,9 +41,11 @@ function ProfileParent() {
 
         <View>
           <View className="bg bg-white h-[130px] w-[140px] rounded-[10px] border-black border-[2px] mt-3 ml-5">
-            <Text className="flex justify-center items-center h-screen text-xs">
-              QR Code
-            </Text>
+            <Image
+              resizeMode="stretch"
+              style={{ width: "100%", height: "100%" }}
+              source={require("../../../assets/qr-parent.png")}
+            />
           </View>
         </View>
       </View>
@@ -77,8 +80,10 @@ function MyDates({ userName, dia, avatarConfig }) {
               </View>
               <Text className="text-xl font-bold opacity-60">Futebol</Text>
             </View>
-            <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[200px] justify-around items-center px-4 py-2 flex-row ml-2">
-              <Avatar size={75} {...avatarConfig}></Avatar>
+            <View className="bg bg-white h-[100px] rounded-[10px] border-black border-[2px] lg:w-[30vw] w-[250px] justify-around items-center px-4 py-2 flex-row ml-2">
+              <View style={{ borderColor: TAILWIND_THEME.colors["purple"] }} className="border-[3px] rounded-[42px] bg-white">
+                <Avatar size={75} {...{ ...avatarConfig, shape: "circle" }}></Avatar>
+              </View>
               <View className="flew-col">
                 <Text className="font-bold text-xl color-purple">
                   {userName}
@@ -102,11 +107,11 @@ function ProfileChild({ userName, avatarConfig }) {
       color_secondary={TAILWIND_THEME.colors.purple}
     >
       <View className="bg bg-white h-[160px] rounded-[25px] border-black border-[2px] lg:w-[30vw] w-[90vw] justify-around items-center px-4 py-2 flex-row">
-        <View className="-mr-8 border-purple rounded-[50px] border-[6px] p-[1px]">
+        <View className="-mr-8 border-purple rounded-[80px] border-[6px] p-[1px]">
           <Avatar
             size={125}
             style={{ backgroundColor: "transparent" }}
-            {...avatarConfig}
+            {...{...avatarConfig, shape: "circle"}}
           ></Avatar>
         </View>
 
@@ -292,6 +297,7 @@ export default function Page() {
   const { user } = useAuth();
   const [isParent, setIsParent] = useState(null);
   const [avatarConfig, setAvatarConfig] = useState(null);
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchAvatar(avatarUserId) {
@@ -309,6 +315,7 @@ export default function Page() {
       if (data) {
         const avatarConfig = JSON.parse(data.avatar_config);
         setAvatarConfig(avatarConfig);
+        setIsAvatarLoaded(true);
       }
     }
     async function fetchIsParent() {
@@ -333,6 +340,9 @@ export default function Page() {
 
     fetchIsParent();
   }, [user]);
+
+  if(!isAvatarLoaded)
+    return "";
 
   return (
     <View className="flex flex-1 mt-8">

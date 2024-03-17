@@ -185,7 +185,7 @@ class Content extends Component {
               <Avatar
                 style={{ backgroundColor: "transparent" }}
                 size={this.avatarSize}
-                {...this.state.config}
+                {...{...this.state.config, shape: "rounded"}}
               />
             </View>
           </OffsetBorder>

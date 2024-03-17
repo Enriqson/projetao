@@ -6,6 +6,9 @@ import Trophy from "@/components/svgs/misc/Trophy";
 import PlusIcon from "@/components/svgs/dates/plusIcon";
 import ACTIVITY_METADATA from "@/utils/activityMetadata";
 import { TAILWIND_THEME } from "@/utils";
+import { useAuth } from "@/providers/AuthProvider";
+import { supabase } from "@/config/supabase";
+import ReactNiceAvatar from "@zamplyy/react-native-nice-avatar";
 
 export default function Page() {
   return (
@@ -17,6 +20,59 @@ export default function Page() {
 
 function Content() {
   const [months, setMonths] = useState([]);
+  const { user } = useAuth();
+  const [isParent, setIsParent] = useState(null);
+  const [avatarConfig, setAvatarConfig] = useState(null);
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
+  
+  
+  // whenever the count of achievements per
+  // user is implemented on back-end
+  let totalAchievements = 7;
+
+  useEffect(() => {
+    async function fetchAvatar(avatarUserId) {
+      let { data, error } = await supabase
+        .from("avatar_config")
+        .select("avatar_config")
+        .eq("user_id", avatarUserId)
+        .single();
+
+      if (error) {
+        console.error("Error fetching avatar:", error.message);
+        return;
+      }
+
+      if (data) {
+        let avatarConfig = JSON.parse(data.avatar_config);
+        avatarConfig.shape = "rounded";
+        setAvatarConfig(avatarConfig);
+        setIsAvatarLoaded(true);
+      }
+    }
+    async function fetchIsParent() {
+      let { data, error } = await supabase
+        .from("parent_child")
+        .select("child_id")
+        .eq("parent_id", user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Error fetching Child:", error.message);
+        return;
+      }
+
+      if (data?.child_id) {
+        setIsParent(true);
+        fetchAvatar(data.child_id);
+      } else {
+        fetchAvatar(user.id);
+      }
+    }
+
+    fetchIsParent();
+  }, [user]);
+
 
   useEffect(() => {
     const mockData = [
@@ -90,11 +146,14 @@ function Content() {
     hide_and_seek: "Pique esconde",
   };
 
+  if(!isAvatarLoaded)
+    return "";
+
   return (
     <ScrollView>
       <View className="w-4/5 lg:w-2/4 self-center h-[190vh] justify-start items-center pointer-events-none">
         {months.map((month, index) => (
-          <Month key={index} month={month} activityTranslations={activityTranslations} />
+          <Month avatarConfig={avatarConfig} key={index} month={month} activityTranslations={activityTranslations} />
         ))}
         <View>
           {/* <Block
@@ -112,7 +171,7 @@ function Content() {
   );
 }
 
-function Month({ month, activityTranslations }) {
+function Month({ month, activityTranslations, avatarConfig }) {
   return (
     <View className="items-center my-4">
       <Text
@@ -125,13 +184,13 @@ function Month({ month, activityTranslations }) {
         {month.name}
       </Text>
       {Object.entries(month.dates).map(([day, activity], i) => (
-        <Day key={i} day={day} activity={activity} activityTranslations={activityTranslations} />
+        <Day avatarConfig={avatarConfig} key={i} day={day} activity={activity} activityTranslations={activityTranslations} />
       ))}
     </View>
   );
 }
 
-function Day({ day, activity, activityTranslations }) {
+function Day({ day, activity, activityTranslations, avatarConfig }) {
   const activityMetadata = ACTIVITY_METADATA[activity.activityName];
   const color_primary = TAILWIND_THEME.colors["light_" + activityMetadata["color"]];
   const color_secondary = TAILWIND_THEME.colors[activityMetadata["color"]];
@@ -156,7 +215,9 @@ function Day({ day, activity, activityTranslations }) {
               Dia {day}
             </Text>
             <View className="flex-row items-end">
-              <Girl colorSecondary={profile_color_secondary} />
+              <View style={{ borderColor: TAILWIND_THEME.colors["purple"] }} className="border-[3px] rounded-[42px] bg-white">
+                <ReactNiceAvatar size={75} style={{ backgroundColor: "transparent" }} {...{...avatarConfig, shape: "circle"}} />
+              </View>
               <Trophy color_primary={profile_color_primary} color_secondary={profile_color_secondary} width={31} height={31} />
             </View>
           </View>

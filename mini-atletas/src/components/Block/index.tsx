@@ -34,7 +34,7 @@ function Block({
   }
 
   return (
-    <Link href={`/`} className="my-5">
+    <View className="my-5">
       <OffsetBorder
         color_primary={color_primary}
         color_secondary={color_secondary}
@@ -54,7 +54,7 @@ function Block({
           {children}
         </View>
       </OffsetBorder>
-    </Link>
+    </View>
   );
 }
 
