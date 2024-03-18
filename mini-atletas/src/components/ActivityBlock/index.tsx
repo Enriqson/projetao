@@ -24,8 +24,9 @@ function ActivityBlock({ activityName, varWidth = "w-[80vw]" }) {
         color_secondary={color_secondary}
       >
         <View className={"bg-white rounded-[32px] border-black border-[2px] flex-row lg:h-[12vh] lg:w-[30vw] h-[15vh] justify-around px-4 py-50 " + varWidth}>
-          <Image />
-          <View className="flex-col pl-2">
+          <View className="pt-2">
+          <Image /></View>
+          <View className="flex-col pl-2 pt-2">
             <Text
               className="text-[20px] text-center font-bold"
               style={textStyle}
