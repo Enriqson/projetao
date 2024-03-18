@@ -60,7 +60,7 @@ export const ModalActivitiesStart = ({
                     <LinearProgress
                       animation={false}
                       color="#2859C5"
-                      value={0.3}
+                      value={0.9}
                       style={{
                         height: "25%",
                         borderWidth: 3,

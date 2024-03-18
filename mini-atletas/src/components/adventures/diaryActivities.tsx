@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HiddeIcon from '../svgs/adventureWeek/hidde';
 import SampleIcon from '../svgs/adventureWeek/sample';
 import Dia1 from '../svgs/adventureWeek/dia1';
@@ -11,8 +11,11 @@ import { ModalActivitiesStart } from './modais/modalActivitiesStart';
 import { ModalStart } from './modais/modalStart';
 import { ModalOnGoing } from './modais/modalOnGoing'
 import { ModalFeedback } from './modais/modalFeedback'
+import { useLocalSearchParams } from 'expo-router';
 
 export const DiaryActivies = () => {
+    
+    const { isRedirect } = useLocalSearchParams();
     const [stateDiaryActivities, setStateDiaryActivities] = useState(false);
     const [atividade, setAtividade] = useState();
     const [statesModals, setStateModals] = useState<boolean[]>(Array.from({ length: 5 }, () => false));
@@ -33,7 +36,11 @@ export const DiaryActivies = () => {
         newStateModals[indexToOpen] = true;
         setStateModals(newStateModals);
     };
-
+    useEffect(()=>{
+        if(isRedirect=='true'){
+            showModal(0)
+        }
+    },[])
     return (
         <View className="flex flex-col h-full w-full items-center">
             <View className='absolute justify-end h-[6.5%] w-5/6  bg  mt-8 bg-transparent border-solid border-modal_blue_board border-2 border-blue-600 rounded-[2rem] z-0 ' />
