@@ -5,6 +5,7 @@ import {
   View,
   KeyboardAvoidingView,
   Image,
+  Alert,
 } from "react-native";
 import { supabase } from "@/config/supabase";
 import { router } from "expo-router";
@@ -32,7 +33,10 @@ export default function () {
       if (error) throw error;
       router.replace("/");
     } catch (err) {
-      throw err;
+      console.log(err);
+      Alert.alert("Credenciais inválidas", "Confira valores inseridos", [
+        { text: "OK" },
+      ]);
     } finally {
       setEmail("");
       setPassword("");
@@ -40,7 +44,12 @@ export default function () {
     }
   }
   return (
-    <KeyboardAvoidingView className="lg:w-1/4  lg:self-center " behavior="height" enabled style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      className="lg:w-1/4  lg:self-center "
+      behavior="height"
+      enabled
+      style={{ flex: 1 }}
+    >
       <Layout>
         <ScrollView
           contentContainerStyle={{
@@ -64,9 +73,7 @@ export default function () {
               source={require("../../assets/login.png")}
             />
           </View>
-          <View
-          className="px-[20px] pb-[20px] bg-white grow-[3]"
-          >
+          <View className="px-[20px] pb-[20px] bg-white grow-[3]">
             <Text
               fontWeight="bold"
               style={{

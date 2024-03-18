@@ -10,6 +10,7 @@ import Trophy from "@/components/svgs/misc/Trophy";
 import Clock from "@/components/svgs/profile/Clock";
 import Payment from "@/components/svgs/adventureWeek/payment";
 import { VELOCITY_EPS } from "react-native-reanimated/lib/typescript/reanimated2/animation/decay/utils";
+import ACTIVITY_METADATA from "@/utils/activityMetadata";
 export const ModalStart = ({
     stateModal,
     onClose,
@@ -23,16 +24,19 @@ export const ModalStart = ({
     atividade: string;
     stateDiaryActivities: boolean;
 }) => {
-    function renderizarImagem() {
-        if (atividade === "Futebol") {
-            return { componente: <Ball />, color: TAILWIND_THEME.colors["light_" + "blue"], colorBorder: TAILWIND_THEME.colors.blue }
-        } else if (atividade === "Xadrez") {
-            return { componente: <Chess />, color: TAILWIND_THEME.colors["light_" + "green"], colorBorder: TAILWIND_THEME.colors.green }
-        } else {
-            return { componente: <Rope />, color: TAILWIND_THEME.colors["light_" + "pink"], colorBorder: TAILWIND_THEME.colors.pink }
-        }
+
+    let activityName = "rope_jumping";
+
+    if (atividade == "Futebol") {
+      activityName = "soccer";
+    } else if (atividade == "Xadrez") {
+      activityName = "chess";
     }
-    const { componente, color, colorBorder } = renderizarImagem()
+    const activity_metadata = ACTIVITY_METADATA[activityName]
+    const componente = activity_metadata.image
+    const color = TAILWIND_THEME.colors["light_" + activity_metadata.color]
+    const colorBorder = TAILWIND_THEME.colors[activity_metadata.color]
+    
     return (
         <Modal animationType="fade" transparent={true} visible={stateModal}>
             <View className="w-full h-[4.0rem]" />
@@ -69,7 +73,7 @@ export const ModalStart = ({
                                     <Text className="text-2xl h-1/6 mt-3">{atividade}</Text>
 
                                     <View className=' h-1/3'>
-                                        {componente}
+                                        {componente()}
                                     </View>
                                     <View className=" flex-row items-center justify-between" >
                                         <View style={{ borderWidth: 1, borderColor: 'black', alignItems: 'center', justifyContent: 'center', width: 72, height: 42, borderRadius: 10, marginRight: 8, marginLeft: 5 }}>

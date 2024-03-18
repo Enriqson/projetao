@@ -32,7 +32,6 @@ function Content({ activity }) {
             <View className="border-black border-[2px] rounded-[32px] bg-white lg:h-[50vh] lg:w-[50vw] h-[60vh] w-[80vw] ">
               <View className="flex mx-[20px] my-[20px] ">
                 <Text style={{
-                  fontFamily: "Kanit",
                   fontSize: 48,
                   fontWeight: "bold",
                   color: color_secondary,
@@ -41,14 +40,12 @@ function Content({ activity }) {
                   <Image />
                 </View>
                 <Text className="my-[10px]" style={{
-                  fontFamily: "Kanit",
                   fontSize: 20,
                   fontWeight: "bold",
                   color: color_secondary,
                 }}>Como fazer?</Text>
                 <Text className="my-[10px]">{activityMetadata["instructions"]}</Text>
                 <Text className="my-[10px]" style={{
-                  fontFamily: "Kanit",
                   fontSize: 20,
                   fontWeight: "bold",
                   color: color_secondary,
@@ -81,7 +78,6 @@ export function StartButton({ onPress, children, activity }) {
           }]}>
             <Text style={{
               color: pressed ? '#FFFFFF' : '#545F71',
-              fontFamily: "Kanit",
               fontWeight: "400",
               fontSize: 24,
             }}>
