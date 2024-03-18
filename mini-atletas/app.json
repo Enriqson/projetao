@@ -4,8 +4,9 @@
     "userInterfaceStyle": "automatic",
     "orientation": "default",
     "web": {
-      "output": "static",
-      "bundler": "metro"
+      "output": "single",
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
       [

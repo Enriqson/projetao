@@ -11,11 +11,15 @@ import Face from "@zamplyy/react-native-nice-avatar/src/face";
 import { defaultOptions } from "@zamplyy/react-native-nice-avatar/src/utils";
 import Icon from "react-native-vector-icons/FontAwesome";
 import OffsetBorder from "@/components/OffsetBorder";
+import { supabase } from "@/config/supabase";
+import { useAuth } from "@/providers/AuthProvider";
+import debounce from "lodash/debounce";
 
 export default function Page() {
+  const { user } = useAuth();
   return (
     <View className="flex flex-1 bg-white">
-      <Content />
+      <Content user={user} />
     </View>
   );
 }
@@ -24,20 +28,32 @@ function PropSelector(props) {
   return (
     <View className="mx-10 first:ml-0 last:mr-0">
       <OffsetBorder leftOffset={0} bottomOffset={8} borderRadius={20}>
-      <TouchableWithoutFeedback onPress={props.onPress}>
-        <View
-          className="bg-white border-2 rounded-[20px] flex-col justify-center items-center"
-          style={{
-            width: props.size,
-            height: props.size,
-          }}
-        >
-          {props.children}
-        </View>
-      </TouchableWithoutFeedback>
-    </OffsetBorder>
+        <TouchableWithoutFeedback onPress={props.onPress}>
+          <View
+            className="bg-white border-2 rounded-[20px] flex-col justify-center items-center"
+            style={{
+              width: props.size,
+              height: props.size,
+            }}
+          >
+            {props.children}
+          </View>
+        </TouchableWithoutFeedback>
+      </OffsetBorder>
     </View>
   );
+}
+function genDefaultOptions(opts) {
+  const hairSet = new Set(opts.hairStyleMan.concat(opts.hairStyleWoman));
+
+  const newOpts = {
+    ...opts,
+    hairStyle: Array.from(hairSet),
+  };
+
+  newOpts["faceColor"] = ["#F9C9B6", "#AC6651"];
+
+  return newOpts;
 }
 
 class Content extends Component {
@@ -47,15 +63,21 @@ class Content extends Component {
   hairStyles: HairStyleType[];
   hairColors: string[];
   currHair: number;
+  state = {
+    config: undefined,
+    isAvatarLoaded: false,
+  };
 
   constructor(props) {
     super(props);
 
+    this.defaultOpts = genDefaultOptions(defaultOptions);
     this.hairStyles = ["normal", "thick", "mohawk", "womanLong", "womanShort"];
     this.hairColors = ["black", "yellow"];
     this.currHair = 0;
+    this.avatarSize = Math.min(units.VH(50), units.VW(80));
 
-    this.config = {
+    const defaultConfig = {
       ...genConfig({
         bgColor: "white",
         hairStyle: this.hairStyles[0],
@@ -72,33 +94,58 @@ class Content extends Component {
       shape: "rounded",
     };
 
-    this.defaultOpts = this.genDefaultOptions(defaultOptions);
-    this.defaultOpts["faceColor"] = ["#F9C9B6", "#AC6651"];
-
-    this.state = {
-      config: this.config,
-    };
-
-    this.avatarSize = Math.min(units.VH(50), units.VW(80));
+    this.state.config = defaultConfig
   }
 
-  genDefaultOptions(opts) {
-    const hairSet = new Set(opts.hairStyleMan.concat(opts.hairStyleWoman));
-    return {
-      ...opts,
-      hairStyle: Array.from(hairSet),
-    };
+  componentDidMount() {
+    this.getSavedAvatar();
+  }
+
+  async getSavedAvatar() {
+    let { data, error } = await supabase
+      .from("avatar_config")
+      .select("avatar_config")
+      .maybeSingle();
+
+    if (error) throw error;
+
+    if (data?.avatar_config) {
+      let avatar_config = data["avatar_config"];
+      const parsedConfig = JSON.parse(avatar_config as unknown as string);
+
+      this.setState({ config: parsedConfig, isAvatarLoaded:true });
+    } else {
+      this.saveConfig(this.state.config)
+    }
+  }
+
+  async saveConfig(config) {
+    const config_str = JSON.stringify(config);
+    const { error } = await supabase
+      .from("avatar_config")
+      .update({ avatar_config: config_str })
+      .eq("user_id", this.props.user.id);
+
+    if (error) throw error;
+  }
+
+  debouncedSaveConfig = debounce(this.saveConfig,300)
+
+  handleConfigChange(newConfig) {
+    this.setState({ config: newConfig });
+    this.debouncedSaveConfig(newConfig);
   }
 
   incrementHair() {
     const numOpts = this.hairColors.length * this.hairStyles.length;
     this.currHair = (this.currHair + 1) % numOpts;
-    this.config.hairStyle =
+    const newConfig = { ...this.state.config };
+    newConfig.hairStyle =
       this.hairStyles[this.currHair % this.hairStyles.length];
-    this.config.hairColor =
+    newConfig.hairColor =
       this.hairColors[this.currHair % this.hairColors.length];
 
-    this.setState({ config: this.config });
+    this.handleConfigChange(newConfig);
   }
 
   incrementProp(prop) {
@@ -107,17 +154,22 @@ class Content extends Component {
       return;
     }
 
-    const currOpt = this.config[prop];
+    const currOpt = this.state.config[prop];
     const opts: [any] = this.defaultOpts[prop];
     const currentIdx = opts.findIndex((item) => item == currOpt);
     const newIdx = (currentIdx + 1) % opts.length;
     const newVal = opts[newIdx];
-    this.config[prop] = newVal;
+    const newConfig = {...this.state.config}
+    newConfig[prop] = newVal;
 
-    this.setState({ config: this.config });
+    this.handleConfigChange(newConfig);
   }
 
   render() {
+
+    if(this.state.isAvatarLoaded==false){
+      return "" //add loading or splash screen
+    }
     return (
       <View className="flex flex-col items-center gap-4 text-center">
         <Text
@@ -133,7 +185,7 @@ class Content extends Component {
               <Avatar
                 style={{ backgroundColor: "transparent" }}
                 size={this.avatarSize}
-                {...this.state.config}
+                {...{...this.state.config, shape: "rounded"}}
               />
             </View>
           </OffsetBorder>
@@ -151,7 +203,7 @@ class Content extends Component {
               size={this.avatarSize / 3.5}
             >
               <Hair
-                style={this.config.hairStyle}
+                style={this.state.config.hairStyle}
                 color="black"
                 colorRandom={false}
               ></Hair>
@@ -161,7 +213,7 @@ class Content extends Component {
               onPress={this.incrementProp.bind(this, "faceColor")}
               size={this.avatarSize / 3.5}
             >
-              <Face color={this.config.faceColor}></Face>
+              <Face color={this.state.config.faceColor}></Face>
             </PropSelector>
           </View>
         </View>

@@ -3,6 +3,7 @@ import Svg, { Path } from "react-native-svg"
 const Xadrez = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 74 89"
         width={74}
         height={89}
         fill="none"
