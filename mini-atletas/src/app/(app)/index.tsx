@@ -1,12 +1,48 @@
-import { Link } from "expo-router";
-import React from "react";
+import { Link, Redirect } from "expo-router";
+import React, { useState, useEffect } from "react";
 import { Text, View } from "react-native";
-import { VELOCITY_EPS } from "react-native-reanimated/lib/typescript/reanimated2/animation/decay/utils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAuth } from "@/providers/AuthProvider";
+import { supabase } from "@/config/supabase";
 
 export default function Page() {
+  const { user } = useAuth();
+  const [isParent, setIsParent] = useState(null);
+  const [hasDataLoaded, setHasDataLoaded] = useState(false)
+
+useEffect(() => {
+  async function fetchIsParent() {
+    let { data, error } = await supabase
+      .from("parent_child")
+      .select("child_id")
+      .eq("parent_id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Error fetching Child:", error.message);
+      return;
+    }
+
+    if (data?.child_id) {
+      setIsParent(true);
+    }
+    setHasDataLoaded(true)
+  }
+
+  fetchIsParent();
+}, [user]);
 
 
+  if(!hasDataLoaded){
+    return ""
+  }
+  if(isParent){
+    return ( <Redirect href="/profile" />)
+  }
+
+  return ( <Redirect href="/adventureWeek" />)
+
+  //keeping old root page
   return (
     <View className="flex flex-1">
       <Header />
