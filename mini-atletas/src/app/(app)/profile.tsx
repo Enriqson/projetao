@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, ScrollView } from "react-native";
 import SetaDireita from "@/components/svgs/profile/setadireita";
-import { TouchableOpacity } from "react-native";
 import GrupoFutebol from "@/components/svgs/profile/gruposfutebol";
 import GrupoPique from "@/components/svgs/profile/grupopiqueesconde";
 import Trophy from "@/components/svgs/misc/Trophy";

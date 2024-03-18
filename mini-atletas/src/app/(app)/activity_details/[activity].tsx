@@ -3,6 +3,7 @@ import { useLocalSearchParams } from 'expo-router';
 import ACTIVITY_METADATA from '@/utils/activityMetadata';
 import { TAILWIND_THEME } from "@/utils/index";
 import OffsetBorder from "@/components/OffsetBorder";
+import { router } from "expo-router";
 
 export default function Page() {
   const { activity } = useLocalSearchParams();
@@ -21,7 +22,7 @@ function Content({ activity }) {
   const Image = activityMetadata["image"];
 
   const handlePress = () => {
-    // Lógica a ser executada quando o botão for pressionado
+    router.push({ pathname: "/adventureWeek", params: { isRedirect: "true" } })
   };
 
   return (
